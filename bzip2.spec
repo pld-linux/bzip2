@@ -1,14 +1,15 @@
 Summary:   Extremely powerful file compression utility
 Name:      bzip2
-Version:   0.1pl2
-Release:   3
-Copyright: GPL
+Version:   0.9.0
+Release:   1
+Copyright: Distributable (see LICENSE)
+Vendor:    Julian Seward <jseward@acm.org>
 Group:     Utilities/Archiving
-Source:    http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
+Source:    http://www.muraroa.demon.co.uk/%{name}-%{version}.tar.gz
 BuildRoot: /tmp/%{name}-%{version}-root
 
 %description
-Bzip2  compresses  files  using the Burrows-Wheeler block-sorting text
+Bzip2 compresses files using the Burrows-Wheeler block-sorting text
 compression algorithm, and Huffman coding. Compression is generally
 considerably better than that achieved by more conventional LZ77/LZ78-based
 compressors, and approaches the performance of the PPM family of statistical
@@ -19,13 +20,15 @@ but they are not identical.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+mkdir shared
 make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{bin,man/man1}
+install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
 install -s bzip2 bzip2recover $RPM_BUILD_ROOT/usr/bin
 
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
@@ -39,14 +42,18 @@ cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 EOF
 
 %files
-%attr(644, root, root, 755) %doc  README ALGORITHMS
-%attr(755, root root) /usr/bin/*
-%attr(644, root  man) /usr/man/man1/*
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%attr(644, root, root, 755) %doc README LICENSE
+%attr(755, root, root) /usr/bin/*
+%attr(644, root,  man) /usr/man/man1/*
+%attr(755, root, root) /usr/lib/lib*so.*.*
 
 %changelog
+* Mon Sep  7 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.9-1]
+- changed base source URl to http://www.muraroa.demon.co.uk/,
+- changed Copyright:,
+- added Vendor:,
+
 * Thu Aug 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.1pl2-3]
 - added -q %setup parameter,
