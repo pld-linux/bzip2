@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	9
+Release:	10
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -20,6 +20,7 @@ URL:		http://sources.redhat.com/bzip2/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	tetex
 %ifarch amd64 ia64 ppc64 sparc64
 Provides:	libbz2.so.1.0()(64bit)
 %else
@@ -154,6 +155,9 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %{__autoconf}
 %configure
 %{__make}
+cd doc
+/usr/bin/texi2html bzip2.texi
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -182,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* NEWS Y2K_INFO
+%doc README* NEWS Y2K_INFO doc/*.html
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_libdir}/lib*.so.1.0
 %attr(755,root,root) %{_bindir}/*
