@@ -1,6 +1,6 @@
 Summary:   Extremely powerful file compression utility
 Name:      bzip2
-Version:   0.9.0
+Version:   0.9.0b
 Release:   1
 Copyright: Distributable (see LICENSE)
 Vendor:    Julian Seward <jseward@acm.org>
