@@ -82,9 +82,9 @@ cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
-install lib*so.*.* lib*.a $RPM_BUILD_ROOT/usr/lib
-ln -sf libbz2.so.0.9.0 $RPM_BUILD_ROOT/usr/lib/libbz2.so
-strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+install lib*so.*.* lib*.a $RPM_BUILD_ROOT%{_libdir}
+ln -sf libbz2.so.0.9.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 
@@ -95,18 +95,18 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) /usr/bin/*
 %attr(644,root,root) %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.html
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 /usr/include/*.h
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
 
 %changelog
 * Sun Mar 14 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
