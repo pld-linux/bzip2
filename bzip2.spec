@@ -71,7 +71,7 @@ ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bunzip2
 ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bzcat
 
 install bzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install bzlib.h $RPM_BUILD_ROOT/usr/include
+install bzlib.h $RPM_BUILD_ROOT%{_includedir}
 
 echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bunzip2.1
 echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzcat.1
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.html
 %attr(755,root,root) %{_libdir}/lib*.so
-/usr/include/*.h
+%{_includedir}/*.h
 
 %files static
 %attr(644,root,root) %{_libdir}/lib*.a
