@@ -27,6 +27,7 @@ make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
 install -s bzip2 bzip2recover $RPM_BUILD_ROOT/usr/bin
 
@@ -42,16 +43,15 @@ EOF
 
 %files
 %attr(644, root, root, 755) %doc README LICENSE
-%attr(711, root, root) /usr/bin/*
+%attr(755, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
 
 %changelog
 * Mon Sep  7 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.9-1]
-- changed base source URl to http://www.muraroa.demon.co.uk/,
-- changed Copyright:,
-- added Vendor:,
-- changed permission on bzip2 binary to 711.
+- changed base source Url to http://www.muraroa.demon.co.uk/,
+- changed Copyright,
+- added Vendor.
 
 * Thu Aug 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.1pl2-3]
