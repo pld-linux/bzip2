@@ -11,7 +11,9 @@ Release:	5
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
+# Source0-md5:	ee76864958d568677f03db8afad92beb
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
