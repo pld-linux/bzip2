@@ -16,24 +16,25 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
 compression algorithm, and Huffman coding. Compression is generally
-considerably better than that achieved by more conventional LZ77/LZ78-based
-compressors, and approaches the performance of the PPM family of
-statistical compressors. The command-line options are deliberately very
-similar to those of GNU Gzip, but they are not identical.
+considerably better than that achieved by more conventional
+LZ77/LZ78-based compressors, and approaches the performance of the PPM
+family of statistical compressors. The command-line options are
+deliberately very similar to those of GNU Gzip, but they are not
+identical.
 
 %description -l fr
-Bzip2 compresse des fichiers en utilisant l'algorithme de compression en
-tri de blocks de texte Burrows-Wheeler, et le codage Huffman. La
-compression est considérablement meilleure que celle effectuée par les plus
-conventionels compresseurs basés sur LZ77/LZ78, et approche la performance
-de la famille PPM de compresseurs statistiques.
+Bzip2 compresse des fichiers en utilisant l'algorithme de compression
+en tri de blocks de texte Burrows-Wheeler, et le codage Huffman. La
+compression est considérablement meilleure que celle effectuée par les
+plus conventionels compresseurs basés sur LZ77/LZ78, et approche la
+performance de la famille PPM de compresseurs statistiques.
 
 %description -l pl
 Kompresor bzip2 u¿ywa algorytmu Burrows-Wheelera do kompresji danych i
-metody Huffmana do ich kodowania. Kompresja pliku czy archiwum tar jest z
-regu³y lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78.
-Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s±
-identyczne.
+metody Huffmana do ich kodowania. Kompresja pliku czy archiwum tar
+jest z regu³y lepsza ni¿ w przypadku stosowania klasycznych
+kompresorów LZ77/LZ78. Opcje linii poleceñ s± bardzo podobne do
+poleceñ GNU Gzip ale nie s± identyczne.
 
 %package devel
 Summary:	Libbz2 library header files
