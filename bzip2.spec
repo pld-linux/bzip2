@@ -14,7 +14,7 @@ Group(de):	Applikationen/Archivierung
 Group(fr):	Applications/Archivage
 Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
-Source1:	%{name}-non-english-man-pages.tar.bz2
+Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-libtoolizeautoconf.patch.gz
 %{!?_without_tetex:BuildRequires:        tetex}
 BuildRequires:	autoconf
