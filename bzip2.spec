@@ -3,7 +3,7 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
@@ -94,7 +94,7 @@ cat > $RPM_BUILD_ROOT%{_bindir}/bzless <<EOF
 EOF
 
 install lib*so.*.* lib*.a $RPM_BUILD_ROOT%{_libdir}
-ln -sf libbz2.so.0.9.5 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
+ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
