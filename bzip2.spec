@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	11
+Release:	12
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -21,13 +21,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	tetex
-%ifarch amd64 ia64 ppc64 sparc64
-Provides:	libbz2.so.1.0()(64bit)
-%else
-Provides:	libbz2.so.1.0
-%endif
-Obsoletes:	libbzip2
-Obsoletes:	bzip2-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -82,15 +75,14 @@ bzip2 компресу╓ файли використовуючи текстовий алгоритм блочного
 ╖╖ забезпечу╓ с╕мейство статистичних компресор╕в PPM.
 
 %package devel
-Summary:	Libbz2 library header files
-Summary(es):	Header files and libraries needed for bzip2 development
-Summary(fr):	Librairie statique et fichiers d'en-tЙte pour bzip2
+Summary:	libbz2 library header files
+Summary(fr):	Fichiers d'en-tЙte pour bzip2
 Summary(pl):	Pliki nagЁСwkowe do libbz2
-Summary(pt_BR):	Arquivos de inclusЦo e biblioteca de desenvolvimento para o bzip2
+Summary(pt_BR):	Arquivos de inclusЦo para o bzip2
 Summary(uk):	Хедери, необх╕дн╕ для програмування з libbz2
 Summary(ru):	Хедеры, необходимые для программирования с libbz2
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Obsoletes:	libbzip2-devel
 
 %description devel
@@ -99,12 +91,8 @@ Libbz2 library header files.
 %description devel -l pl
 Pliki nagЁСwkowe do libbz2.
 
-%description devel -l es
-This package includes the header files and libraries needed for
-developing programs using bzip2.
-
 %description devel -l pt_BR
-Este pacote inclui arquivos de inclusЦo e biblioteca necessАrio para o
+Este pacote inclui arquivos de inclusЦo necessАrio para o
 desenvolvimento de programas que usam o bzip2.
 
 %description devel -l ru
@@ -115,9 +103,32 @@ desenvolvimento de programas que usam o bzip2.
 Цей пакет м╕стить б╕бл╕отеку та хедери, необх╕дн╕ для розробки
 програм, як╕ включають п╕дпрограми компрес╕╖/декомпрес╕╖ bz2.
 
+%package libs
+Summary:	libbz2 library
+Summary(fr):	Librairie libbz2
+Summary(pl):	Biblioteka libbz2
+Group:		Development/Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+%ifarch amd64 ia64 ppc64 sparc64
+Provides:	libbz2.so.1.0()(64bit)
+%else
+Provides:	libbz2.so.1.0
+%endif
+Obsoletes:	libbzip2
+Conflicts:	%{name} <= 0:1.0.2-12
+
+%description libs
+libbz2 library.
+
+%description libs -l fr
+Librairie libbz2.
+
+%description libs -l pl
+Biblioteka libbz2.
+
 %package static
 Summary:	Static libbz2 library
-Summary(es):	Static libraries for bzip2 development
+Summary(fr):	Librairie statique libbz2
 Summary(pl):	Biblioteka statyczna libbz2
 Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com a bzip2
 Summary(ru):	Статические библиотеки bzip2
@@ -130,8 +141,8 @@ Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 %description static
 Static libbz2 library.
 
-%description static -l es
-Static libraries for bzip2 development.
+%description libs -l fr
+Librairie statique d'en-tЙte pour bzip2.
 
 %description static -l pl
 Biblioteka statyczna libbz2.
@@ -182,14 +193,12 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post libs	-p /sbin/ldconfig
+%postun libs	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc README* NEWS Y2K_INFO doc/*.html
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %{_libdir}/lib*.so.1.0
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %lang(es) %{_mandir}/es/man1/*
@@ -204,6 +213,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/*.h
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.1.0
 
 %files static
 %defattr(644,root,root,755)
