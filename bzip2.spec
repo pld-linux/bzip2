@@ -20,7 +20,6 @@ but they are not identical.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 mkdir shared
