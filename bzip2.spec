@@ -110,35 +110,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755) 
 %{_libdir}/lib*.a
-
-%changelog
-* Sun Mar 14 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.9.0c-2]
-- added build a shared libbz2.so,
-- added devel and static subpackage,
-- gzipping man pages instead bzipping2,
-- removed man group from man pages.
-
-* Fri Jan 15 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.9.0c-1d]
-- added Group(pl),
-- added static bzip2 library,
-- added symlink bzcat,
-- fixed man pages,
-- compressed man pages with bzip2 (bzip2 must by instaled in system ;)
-
-* Mon Oct 05 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.9.0-1d]
-- updated to 0.9.0b. 
-
-* Thu Sep 24 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.1pl2-2d]
-- translation modified for pl,
-- install -d instead mkdir -p,
-- added %defattr support,
-- fixed files permissions,
-- minor modifications of the spec file.
-
-* Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.1pl2-2]
-- build against glibc-2.1.
