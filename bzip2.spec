@@ -2,7 +2,7 @@ Summary:	Extremely powerful file compression utility
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.0c
-Release:	4
+Release:	5
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -28,7 +28,7 @@ lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78.
 Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s± 
 identyczne.
 
-%package devel
+%package	devel
 Summary:	Libbz2 library header files
 Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
@@ -41,7 +41,7 @@ Libbz2 library header files
 %description -l pl devel
 Pliki nag³ówkowe do libbz2.
 
-%package static
+%package	static
 Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
@@ -84,6 +84,7 @@ EOF
 
 install lib*so.*.* lib*.a $RPM_BUILD_ROOT%{_libdir}
 ln -sf libbz2.so.0.9.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
+
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
@@ -95,9 +96,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*
 %attr(755,root,root) %{_bindir}/*
-%attr(644,root,root) %{_mandir}/man1/*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -106,7 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755) 
+%{_libdir}/lib*.a
 
 %changelog
 * Sun Mar 14 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
