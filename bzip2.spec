@@ -8,7 +8,7 @@ Summary(pl):	Kompresor plikСw bzip2
 Name:		bzip2
 Version:	1.0.1
 Release:	7
-License:	GPL
+License:	BSD-like
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(fr):	Applications/Archivage
@@ -52,12 +52,16 @@ Summary(fr):	Librairie statique et fichiers d'en-tЙte pour bzip2
 Summary(pl):	Pliki nagЁСwkowe do libbz2
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
-Libbz2 library header files
+Libbz2 library header files.
 
 %description -l pl devel
 Pliki nagЁСwkowe do libbz2.
@@ -67,8 +71,12 @@ Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -107,11 +115,11 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 gzip -9nf README* NEWS Y2K_INFO
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
