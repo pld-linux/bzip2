@@ -140,7 +140,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %build
 aclocal
 libtoolize --copy --force
-automake -a -c
+automake -a -c -f
 autoconf
 %configure
 %{__make}
