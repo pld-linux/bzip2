@@ -7,7 +7,7 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.1
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
