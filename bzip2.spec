@@ -34,6 +34,7 @@ Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Autoprov:	no
 
 %description devel
 Libbz2 library header files
