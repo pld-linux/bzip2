@@ -1,10 +1,12 @@
 Summary:	Extremely powerful file compression utility
+Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.0c
 Release:	5
 Copyright:	GPL
 Group:		Utilities/Archiving
+Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
 Source:		http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
 Patch:		bzip2-shlib.patch
@@ -21,6 +23,13 @@ compressors.
 The command-line options are deliberately very similar to those of GNU Gzip,
 but they are not identical.
 
+%description -l fr
+Bzip2 compresse des fichiers en utilisant l'algorithme de compression en tri
+de blocks de texte Burrows-Wheeler, et le codage Huffman. La compression est
+considérablement meilleure que celle effectuée par les plus conventionels
+compresseurs basés sur LZ77/LZ78, et approche la performance de la famille
+PPM de compresseurs statistiques.
+
 %description -l pl
 Kompresor bzip2 u¿ywa algorytmu Burrows-Wheelera do kompresji danych i metody 
 Huffmana do ich kodowania. Kompresja pliku czy archiwum tar jest z regu³y 
@@ -30,8 +39,10 @@ identyczne.
 
 %package devel
 Summary:	Libbz2 library header files
+Summary(fr):	Librairie statique et fichiers d'en-tête pour bzip2
 Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -45,6 +56,7 @@ Pliki nag³ówkowe do libbz2.
 Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
