@@ -1,6 +1,10 @@
 Summary:	Extremely powerful file compression utility
+Summary(es):	Un compresor de archivos con un nuevo algoritmo
 Summary(fr):	Utilitaire de compression de fichier extrЙmement puissant
 Summary(pl):	Kompresor plikСw bzip2
+Summary(pt_BR):	Compactador de arquivo extremamente poderoso
+Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
+Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
 Release:	2
@@ -12,9 +16,9 @@ Patch0:		%{name}-libtoolizeautoconf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-Obsoletes:	libbzip2
 URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libbzip2
 
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
@@ -24,6 +28,12 @@ LZ77/LZ78-based compressors, and approaches the performance of the PPM
 family of statistical compressors. The command-line options are
 deliberately very similar to those of GNU Gzip, but they are not
 identical.
+
+%description -l es
+Bzip2 es un programa de compresiСn/descompresiСn. TМpicamente el
+archivo compactado queda entre 20 la 30 por ciento menor de que se
+fuera compactado con gzip. Observa que bzip2 no entiende los archivos
+del bzip original, ni los archivos del gzip.
 
 %description -l fr
 Bzip2 compresse des fichiers en utilisant l'algorithme de compression
@@ -39,12 +49,39 @@ jest z reguЁy lepsza ni© w przypadku stosowania klasycznych
 kompresorСw LZ77/LZ78. Opcje linii poleceЯ s╠ bardzo podobne do
 poleceЯ GNU Gzip ale nie s╠ identyczne.
 
+%description -l pt_BR
+Bzip2 И um programa de compressЦo/descompressЦo. Tipicamente o arquivo
+compactado fica 20 a 30 por cento menor do que se fosse compactado com
+o gzip.
+
+Note que o bzip2 nЦo entende os arquivos do bzip original, nem os
+arquivos do gzip.
+
+%description -l ru
+bzip2 компрессирует файлы используя компрессирующий текстовый алгоритм
+блочной сортировки Burrows-Wheeler и кодирование Huffman'а.
+Достигаемая компрессия обычно существенно лучше достигаемой более
+привычными компрессорами на основе LZ77/LZ78 и приближается к той,
+которую обеспечивает семейство статистических компрессоров PPM.
+
+%description -l uk
+bzip2 компресу╓ файли використовуючи текстовий алгоритм блочного
+сортування Burrows-Wheeler та кодування Huffman'а. Компрес╕я, яка
+досяга╓ться bzip2, як правило краща за ту, що забезпечують
+розповсюджен╕ компресори на баз╕ LZ77/LZ78 ╕ наближа╓ться до то╖, що
+╖╖ забезпечу╓ с╕мейство статистичних компресор╕в PPM.
+
 %package devel
 Summary:	Libbz2 library header files
+Summary(es):	Header files and libraries needed for bzip2 development
 Summary(fr):	Librairie statique et fichiers d'en-tЙte pour bzip2
 Summary(pl):	Pliki nagЁСwkowe do libbz2
+Summary(pt_BR):	Arquivos de inclusЦo e biblioteca de desenvolvimento para o bzip2
+Summary(uk):	Хедери, необх╕дн╕ для програмування з libbz2
+Summary(ru):	Хедеры, необходимые для программирования с libbz2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Obsoletes:	libbzip2-devel
 
 %description devel
 Libbz2 library header files.
@@ -52,17 +89,49 @@ Libbz2 library header files.
 %description devel -l pl
 Pliki nagЁСwkowe do libbz2.
 
+%description devel -l es
+This package includes the header files and libraries needed for
+developing programs using bzip2.
+
+%description devel -l pt_BR
+Este pacote inclui arquivos de inclusЦo e biblioteca necessАrio para o
+desenvolvimento de programas que usam o bzip2.
+
+%description devel -l ru
+Этот пакет содержит библиотеку и хедеры, необходимые для разработки
+программ, включающих подпрограммы компрессии/декомпрессии bz2.
+
+%description devel -l uk
+Цей пакет м╕стить б╕бл╕отеку та хедери, необх╕дн╕ для розробки
+програм, як╕ включають п╕дпрограми компрес╕╖/декомпрес╕╖ bz2.
+
 %package static
 Summary:	Static libbz2 library
+Summary(es):	Static libraries for bzip2 development
 Summary(pl):	Biblioteka statyczna libbz2
+Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com a bzip2
+Summary(ru):	Статические библиотеки bzip2
+Summary(uk):	Статичн╕ б╕бл╕отеки bzip2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
 Static libbz2 library.
 
+%description static -l es
+Static libraries for bzip2 development.
+
 %description static -l pl
 Biblioteka statyczna libbz2.
+
+%description static -l pt_BR
+Bibliotecas estАticas para desenvolvimento com a bzip2.
+
+%description static -l uk
+Це окремий пакет з╕ статичними б╕бл╕отеками.
+
+%description static -l ru
+Это отдельный пакет со статическими библиотеками.
 
 %prep
 %setup -q
