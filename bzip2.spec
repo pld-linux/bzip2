@@ -3,13 +3,13 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.5d
-Release:	2
+Release:	4
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
-Source:		http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
-Patch:		bzip2-shlib.patch
+Source0:	http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
+Patch0:		bzip2-shlib.patch
 URL:		http://www.muraroa.demon.co.uk/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,9 +31,9 @@ de la famille PPM de compresseurs statistiques.
 %description -l pl
 Kompresor bzip2 u¿ywa algorytmu Burrows-Wheelera do kompresji danych i
 metody Huffmana do ich kodowania. Kompresja pliku czy archiwum tar jest z
-regu³y lepsza ni¿ w przypadku stosowania klasycznych kompresorów
-LZ77/LZ78. Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale
-nie s± identyczne.
+regu³y lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78.
+Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s±
+identyczne.
 
 %package devel
 Summary:	Libbz2 library header files
