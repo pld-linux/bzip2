@@ -2,7 +2,7 @@ Summary:	Extremely powerful file compression utility
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.0c
-Release:	3
+Release:	4
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -63,7 +63,7 @@ make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{bin,lib,include,man/man1}
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_bindir},%{_includedir},%{_mandir}/man1}
 
 install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT%{_bindir}
 
