@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	13
+Release:	14
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -165,7 +165,8 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %{__libtoolize}
 %{__automake}
 %{__autoconf}
-%configure
+%configure \
+    CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
 %{__make}
 cd doc
 /usr/bin/texi2html bzip2.texi
