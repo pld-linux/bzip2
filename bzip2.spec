@@ -3,13 +3,14 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.1
-Release:	4
+Release:	5
 License:	GPL
-Group:		Utilities/Archiving
+Group:		Applications/Archiving
+Group(de):	Applikationen/Archivierung
 Group(fr):	Applications/Archivage
-Group(pl):	Narzêdzia/Archiwizacja
+Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
-Patch0:		bzip2-libtoolizeautoconf.patch
+Patch0:		%{name}-libtoolizeautoconf.patch
 BuildRequires:	tetex
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -45,6 +46,7 @@ Summary:	Libbz2 library header files
 Summary(fr):	Librairie statique et fichiers d'en-tête pour bzip2
 Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -59,6 +61,7 @@ Pliki nag³ówkowe do libbz2.
 Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -78,7 +81,6 @@ aclocal
 libtoolize --copy --force
 automake -a -c
 autoconf
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
@@ -88,18 +90,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 # Substitute %{_bindir} in bzless.
-mv $RPM_BUILD_ROOT%{_bindir}/bzless{,.tmp}
+mv -f $RPM_BUILD_ROOT%{_bindir}/bzless{,.tmp}
 sed -e "s@%%{_bindir}@%{_bindir}@g" \
 	$RPM_BUILD_ROOT%{_bindir}/bzless.tmp > \
 	$RPM_BUILD_ROOT%{_bindir}/bzless
-rm $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
+rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
 ( cd doc ; texi2html bzip2.texi )
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
-
-gzip -9nf README* NEWS Y2K_INFO \
-	$RPM_BUILD_ROOT%{_mandir}/{,pl}/man1/*
+gzip -9nf README* NEWS Y2K_INFO
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
