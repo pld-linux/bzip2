@@ -7,13 +7,14 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.1
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(fr):	Applications/Archivage
 Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
+Source1:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-libtoolizeautoconf.patch
 %{!?_without_tetex:BuildRequires:        tetex}
 BuildRequires:	autoconf
@@ -100,6 +101,8 @@ sed -e "s@%%{_bindir}@%{_bindir}@g" \
 	$RPM_BUILD_ROOT%{_bindir}/bzless
 rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+
 %{!?_without_tetex: ( cd doc ; texi2html bzip2.texi )}
 
 gzip -9nf README* NEWS Y2K_INFO
@@ -116,6 +119,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/*
 %lang(en) %{_mandir}/man1/*
+%lang(es) %{_mandir}/es/man1/*
+%lang(fr) %{_mandir}/fr/man1/*
+%lang(hu) %{_mandir}/hu/man1/*
+%lang(ja) %{_mandir}/ja/man1/*
+%lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
 %files devel
