@@ -138,10 +138,6 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %patch -p1
 
 %build
-
-newoptflags="%{optflags} -fomit-frame-pointer"
-%define optflags $newoptflags
-
 %{__aclocal}
 %{__libtoolize}
 %{__automake}
