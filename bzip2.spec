@@ -3,13 +3,14 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
 Patch0:		bzip2-libtoolizeautoconf.patch
+BuildRequires:	tetex
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -85,6 +86,13 @@ LDFLAGS="-s"; export LDFLAGS
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+# Substitute %{_bindir} in bzless.
+mv $RPM_BUILD_ROOT%{_bindir}/bzless{,.tmp}
+sed -e "s@%%{_bindir}@%{_bindir}@g" \
+	$RPM_BUILD_ROOT%{_bindir}/bzless.tmp > \
+	$RPM_BUILD_ROOT%{_bindir}/bzless
+rm $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
 ( cd doc ; texi2html bzip2.texi )
 
