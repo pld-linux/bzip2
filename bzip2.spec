@@ -2,7 +2,7 @@ Summary:	Extremely powerful file compression utility
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.0c
-Release:	4
+Release:	5
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
