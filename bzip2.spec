@@ -44,7 +44,6 @@ EOF
 %attr(644, root, root, 755) %doc README LICENSE
 %attr(755, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
-%attr(755, root, root) /usr/lib/lib*so.*.*
 
 %changelog
 * Mon Sep  7 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
