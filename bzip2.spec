@@ -70,12 +70,12 @@ install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT/usr/bin
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bzcat
 
-install bzip2.1 $RPM_BUILD_ROOT/usr/man/man1
+install bzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install bzlib.h $RPM_BUILD_ROOT/usr/include
 
-echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bunzip2.1
-echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bzcat.1
-echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bzip2recover.1
+echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bunzip2.1
+echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzcat.1
+echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzip2recover.1
 
 cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 #!/bin/sh
@@ -86,7 +86,7 @@ install lib*so.*.* lib*.a $RPM_BUILD_ROOT/usr/lib
 ln -sf libbz2.so.0.9.0 $RPM_BUILD_ROOT/usr/lib/libbz2.so
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %attr(755,root,root) /usr/lib/lib*.so.*.*
 %attr(755,root,root) /usr/bin/*
-%attr(644,root,root) /usr/man/man1/*
+%attr(644,root,root) %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
