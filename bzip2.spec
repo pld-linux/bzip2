@@ -8,6 +8,7 @@ Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
 Release:	7
+Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	ftp://sources.redhat.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
@@ -82,7 +83,7 @@ Summary(pt_BR):	Arquivos de inclusЦo e biblioteca de desenvolvimento para o bzip
 Summary(uk):	Хедери, необх╕дн╕ для програмування з libbz2
 Summary(ru):	Хедеры, необходимые для программирования с libbz2
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	libbzip2-devel
 
 %description devel
@@ -115,9 +116,9 @@ Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com a bzip2
 Summary(ru):	Статические библиотеки bzip2
 Summary(uk):	Статичн╕ б╕бл╕отеки bzip2
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
-%define		specflags_ia32	"-fomit-frame-pointer"
+%define		specflags_ia32	-fomit-frame-pointer
 
 %description static
 Static libbz2 library.
