@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	7
+Release:	8
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -20,8 +20,13 @@ URL:		http://sources.redhat.com/bzip2/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%ifarch amd64 ia64 ppc64 sparc64
+Provides:	libbz2.so.1.0()(64bit)
+%else
+Provides:	libbz2.so.1.0
+%endif
 Obsoletes:	libbzip2
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
@@ -163,6 +168,10 @@ sed -e "s@%%{_bindir}@%{_bindir}@g" \
 	$RPM_BUILD_ROOT%{_bindir}/bzless
 rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
+# standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
+# but ABI has not changed - provide symlink for binary compatibility
+ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so.1.0
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
@@ -174,7 +183,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README* NEWS Y2K_INFO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.1.0
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %lang(es) %{_mandir}/es/man1/*
