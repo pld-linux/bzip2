@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	10
+Release:	11
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -27,6 +27,7 @@ Provides:	libbz2.so.1.0()(64bit)
 Provides:	libbz2.so.1.0
 %endif
 Obsoletes:	libbzip2
+Obsoletes:	bzip2-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
