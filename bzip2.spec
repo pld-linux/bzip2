@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
@@ -159,8 +159,6 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf README* NEWS Y2K_INFO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -169,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz Y2K_INFO.gz
+%doc README* NEWS Y2K_INFO
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
