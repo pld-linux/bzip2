@@ -1,22 +1,17 @@
-# 
-# Conditional build:
-# --without tetex - build without html documentation(don't request tetex)
-#
 Summary:	Extremely powerful file compression utility
 Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
-Version:	1.0.1
-Release:	7
+Version:	1.0.2
+Release:	1
 License:	BSD-like
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(fr):	Applications/Archivage
 Group(pl):	Aplikacje/Archiwizacja
-Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-Patch0:		%{name}-libtoolizeautoconf.patch.gz
-%{!?_without_tetex:BuildRequires:        tetex}
+Patch0:		%{name}-libtoolizeautoconf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -111,8 +106,6 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-%{!?_without_tetex: ( cd doc ; texi2html bzip2.texi )}
-
 gzip -9nf README* NEWS Y2K_INFO
 
 %clean
@@ -136,7 +129,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{!?_without_tetex: %doc doc/*.html}
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*.h
 
