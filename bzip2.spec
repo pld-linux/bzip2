@@ -1,12 +1,13 @@
-Summary:   Extremely powerful file compression utility
-Name:      bzip2
-Version:   0.9.0b
-Release:   1
-Copyright: Distributable (see LICENSE)
-Vendor:    Julian Seward <jseward@acm.org>
-Group:     Utilities/Archiving
-Source:    http://www.muraroa.demon.co.uk/%{name}-%{version}.tar.gz
-BuildRoot: /tmp/%{name}-%{version}-root
+Summary:     Extremely powerful file compression utility
+Summary(pl): Extremalnie wydajny program do kompresowania plików
+Name:        bzip2
+Version:     0.9.0b
+Release:     2
+Copyright:   Distributable (see LICENSE)
+Vendor:      Julian Seward <jseward@acm.org>
+Group:       Utilities/Archiving
+Source:      http://www.muraroa.demon.co.uk/%{name}-%{version}.tar.gz
+BuildRoot:   /tmp/%{name}-%{version}-root
 
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
@@ -17,6 +18,12 @@ compressors.
 
 The command-line options are deliberately very similar to those of GNU Gzip,
 but they are not identical.
+
+%description -l pl
+Bzip2 kompresuje pliki u¿ywaj±c algorymtu kompresji blokowego-sortowania tekstu
+Burrows-Wheeler'a oraz kodowania Huffmana. Generalnie kompresja jest znacznie
+lepsza ni¿ w konwencjonalnych kompresorach u¿ywaj±cych algorytmów LZ77/LZ78
+i zbli¿a siê do wydajno¶ci statystycznych kompresorów z rodziny PPM.
 
 %prep
 %setup -q
@@ -47,6 +54,10 @@ EOF
 %attr(644, root,  man) /usr/man/man1/*
 
 %changelog
+* Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
+  [0.9.0b-2]
+- added pl translation.
+
 * Mon Sep  7 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.9-1]
 - changed base source Url to http://www.muraroa.demon.co.uk/,
