@@ -524,7 +524,7 @@ diff -Nru bzip2-1.0.1/Makefile.am bzip2-1.0.1.new/Makefile.am
 +libbz2_la_LDFLAGS	= -version-info 1:0:0
 +include_HEADERS		= bzlib.h bzlib_private.h
 +
-+bzip2SCRIPTS		= bzless
++bin_SCRIPTS		= bzless bzgrep
 +
 +EXTRA_DIST = README README.COMPILATION.PROBLEMS \
 +	Y2K_INFO libbz2.def libbz2.dsp \
