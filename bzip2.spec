@@ -3,7 +3,7 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
@@ -86,6 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
+( cd doc ; texi2html bzip2.texi )
+
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf README* NEWS Y2K_INFO \
@@ -99,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES.gz README.gz Y2K_INFO.gz
+%doc README.gz Y2K_INFO.gz
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/*
 %lang(en) %{_mandir}/man1/*
@@ -107,8 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc manual*html 
-%doc *.html
+%doc doc/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*.h
 
