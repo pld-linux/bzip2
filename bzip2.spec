@@ -7,7 +7,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	4
+Release:	5
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
@@ -181,6 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_includedir}/*.h
 
 %files static
