@@ -2,7 +2,7 @@ Summary:     Extremely powerful file compression utility
 Summary(pl): Extremalnie wydajny program do kompresowania plików
 Name:        bzip2
 Version:     0.9.0b
-Release:     2
+Release:     3
 Copyright:   Distributable (see LICENSE)
 Vendor:      Julian Seward <jseward@acm.org>
 Group:       Utilities/Archiving
@@ -34,8 +34,8 @@ make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
+
 install -s bzip2 bzip2recover $RPM_BUILD_ROOT/usr/bin
 
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
@@ -48,12 +48,19 @@ cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %attr(644, root, root, 755) %doc README LICENSE
 %attr(755, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
 
 %changelog
+* Sun Nov  1 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.9.0b-3]
+- added %clean section.
+
 * Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
   [0.9.0b-2]
 - added pl translation.
