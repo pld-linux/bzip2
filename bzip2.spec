@@ -10,13 +10,13 @@ Version:	1.0.2
 Release:	5
 License:	BSD-like
 Group:		Applications/Archiving
-Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
+Source0:	ftp://sources.redhat.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-libtoolizeautoconf.patch
+URL:		http://sources.redhat.com/bzip2/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libbzip2
 
