@@ -21,6 +21,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	tetex
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -108,7 +109,6 @@ Summary:	libbz2 library
 Summary(fr):	Librairie libbz2
 Summary(pl):	Biblioteka libbz2
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
 %ifarch amd64 ia64 ppc64 sparc64
 Provides:	libbz2.so.1.0()(64bit)
 %else
