@@ -8,7 +8,7 @@ Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
 Source:		http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
 Patch:		bzip2-shlib.patch
-URL:		http://www.digistar.com/bzip2/
+URL:		http://www.muraroa.demon.co.uk/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -34,7 +34,6 @@ Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
-Autoprov:	no
 
 %description devel
 Libbz2 library header files
@@ -83,7 +82,8 @@ cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
-install lib* $RPM_BUILD_ROOT/usr/lib
+install lib*so.*.* lib*.a $RPM_BUILD_ROOT/usr/lib
+ln -sf libbz2.so.0.9.0 $RPM_BUILD_ROOT/usr/lib/libbz2.so
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
