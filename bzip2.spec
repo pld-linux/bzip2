@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 - added static bzip2 library,
 - added symlink bzcat,
 - fixed man pages,
-- compressed %doc with bzip2 (bzip2 must by instaled in system ;) 
+- compressed %doc with bzip2 (bzip2 must be instaled in system ;) 
 
 * Mon Oct 05 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.9.0-1d]
