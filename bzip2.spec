@@ -1,17 +1,17 @@
-Summary:     Extremely powerful file compression utility
-Summary(pl): Extremalnie wydajny program do kompresowania plików
-Name:        bzip2
-Version:     0.9.0b
-Release:     4
-Copyright:   Distributable (see LICENSE)
-Vendor:      Julian Seward <jseward@acm.org>
-Group:       Utilities/Archiving
-Group(pl):   Narzêdzia/Archiwizacja
-Source:      http://www.muraroa.demon.co.uk/%{name}-%{version}.tar.gz
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Extremely powerful file compression utility
+Summary(pl):	Kompresor plików bzip2
+Name:		bzip2
+Version:	0.9.0c
+Release:	2
+Copyright:	GPL
+Group:		Utilities/Archiving
+Group(pl):	Narzêdzia/Archiwizacja
+URL:		http://www.digistar.com/bzip2
+Source:		%{name}-%{version}.tar.gz
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-Bzip2 compresses files using the Burrows-Wheeler block-sorting text
+Bzip2  compresses  files  using the Burrows-Wheeler block-sorting text
 compression algorithm, and Huffman coding. Compression is generally
 considerably better than that achieved by more conventional LZ77/LZ78-based
 compressors, and approaches the performance of the PPM family of statistical
@@ -21,70 +21,76 @@ The command-line options are deliberately very similar to those of GNU Gzip,
 but they are not identical.
 
 %description -l pl
-Bzip2 kompresuje pliki u¿ywaj±c algorymtu kompresji blokowego-sortowania tekstu Burrows-Wheeler'a oraz kodowania Huffmana. Generalnie kompresja
-jest znacznie lepsza ni¿ w konwencjonalnych kompresorach u¿ywaj±cych
-algorytmów LZ77/LZ78 i zbli¿a siê do wydajno¶ci statystycznych kompresorów
-z rodziny PPM.
+Kompresor bzip2 u¿ywa algorytmu Burrows-Wheelera do kompresji danych i metody 
+Huffmana do ich kodowania. Kompresja pliku czy archiwum tar jest z regu³y 
+lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78. 
+Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s± 
+identyczne.
 
 %prep
-%setup -q
+%setup -q 
 
 %build
-mkdir shared
-make CFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s
+make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
 
-install -s bzip2 bzip2recover $RPM_BUILD_ROOT/usr/bin
+install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT/usr/bin
+install *.a $RPM_BUILD_ROOT/usr/lib
 
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
+ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bzcat
 
 install bzip2.1 $RPM_BUILD_ROOT/usr/man/man1
-echo ".so bzip2.1" > $RPM_BUILD_ROOT/usr/man/man1/bunzip2.1
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
-gzip -9nf README LICENSE
+echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bunzip2.1
+echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bzcat.1
+echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bzip2recover.1
 
 cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 #!/bin/sh
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
+bzip2 -9  README
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man1/*
+
+%files
+%defattr(644,root,root,755)
+%doc README.bz2 *.html
+
+%attr(755,root,root) /usr/bin/*
+%attr(644,root, man) /usr/man/man1/*
+
+/usr/lib/*.a
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
-%attr(644, root, root, 755) %doc README.gz LICENSE.gz
-%attr(755, root, root) /usr/bin/*
-%attr(644, root,  man) /usr/man/man1/*
-
 %changelog
-* Thu Feb 10 1999 Micha³ Kuratczyk <kurkens@polbox.com>
-  [0.9.0b-4]
-- added gzipping man pages and documentation
+* Fri Jan 15 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.9.0c-1d]
+- added Group(pl),
+- added static bzip2 library,
+- added symlink bzcat,
+- fixed man pages,
+- compressed %doc with bzip2 (bzip2 must by instaled in system ;) 
 
-* Sun Nov  1 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.9.0b-3]
-- added %clean section.
+* Mon Oct 05 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.9.0-1d]
+- updated to 0.9.0b. 
 
-* Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-  [0.9.0b-2]
-- added pl translation.
+* Thu Sep 24 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.1pl2-2d]
+- translation modified for pl,
+- install -d instead mkdir -p,
+- added %defattr support,
+- fixed files permissions,
+- minor modifications of the spec file.
 
-* Mon Sep  7 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.9-1]
-- changed base source Url to http://www.muraroa.demon.co.uk/,
-- changed Copyright,
-- added Vendor.
-
-* Thu Aug 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.1pl2-3]
-- added -q %setup parameter,
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- added using %%{name} and %%{version} in Source,
-- bunzip2(1) man page is now maked as nroff include to bzip(1) instead
-  making sym link to bzip2.1 (this allow compress man pages in future),
-- added %attr and %defattr macros in %files (allows build package from
-  non-root account).
+* Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.1pl2-2]
+- build against GNU libc-2.1.
