@@ -6,6 +6,7 @@ Release:     3
 Copyright:   Distributable (see LICENSE)
 Vendor:      Julian Seward <jseward@acm.org>
 Group:       Utilities/Archiving
+Group(pl):   Narzêdzia/Archiwizacja
 Source:      http://www.muraroa.demon.co.uk/%{name}-%{version}.tar.gz
 BuildRoot:   /tmp/%{name}-%{version}-root
 
