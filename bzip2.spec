@@ -2,14 +2,17 @@ Summary:	Extremely powerful file compression utility
 Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
-Version:	1.0.0
-Release:	2
+Version:	1.0.1
+Release:	1
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
-Patch0:		bzip2-shlib.patch
+Patch0:		bzip2-libtoolizeautoconf.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,35 +73,23 @@ Biblioteka statyczna libbz2.
 %patch -p1
 
 %build
-%{__make} CFLAGS="$RPM_OPT_FLAGS"
+aclocal
+libtoolize --copy --force
+automake -a -c
+autoconf
+LDFLAGS="-s"; export LDFLAGS
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_bindir},%{_includedir},%{_mandir}/man1}
 
-install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT%{_bindir}
-
-ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bunzip2
-ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bzcat
-
-install bzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install bzlib.h $RPM_BUILD_ROOT%{_includedir}
-
-echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bunzip2.1
-echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzcat.1
-echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzip2recover.1
-
-cat > $RPM_BUILD_ROOT%{_bindir}/bzless <<EOF
-#!/bin/sh
-%{_bindir}/bunzip2 -c "\$@" | /usr/bin/less
-EOF
-
-install lib*so.*.* lib*.a $RPM_BUILD_ROOT%{_libdir}
-ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
-gzip -9nf README CHANGES Y2K_INFO $RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README* NEWS Y2K_INFO \
+	$RPM_BUILD_ROOT%{_mandir}/{,pl}/man1/*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -111,7 +102,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES.gz README.gz Y2K_INFO.gz
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
+%lang(en) %{_mandir}/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
 
 %files devel
 %defattr(644,root,root,755)
