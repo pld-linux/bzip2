@@ -42,7 +42,7 @@ EOF
 
 %files
 %attr(644, root, root, 755) %doc README LICENSE
-%attr(755, root, root) /usr/bin/*
+%attr(711, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
 
 %changelog
@@ -51,6 +51,7 @@ EOF
 - changed base source URl to http://www.muraroa.demon.co.uk/,
 - changed Copyright:,
 - added Vendor:,
+- changed permission on bzip2 binary to 711.
 
 * Thu Aug 13 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.1pl2-3]
