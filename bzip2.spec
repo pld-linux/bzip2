@@ -11,7 +11,7 @@ Group(pl):	Narzêdzia/Archiwizacja
 Source:		http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
 Patch:		bzip2-shlib.patch
 URL:		http://www.muraroa.demon.co.uk/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
