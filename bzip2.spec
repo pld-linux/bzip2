@@ -65,10 +65,10 @@ make CFLAGS="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{bin,lib,include,man/man1}
 
-install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT/usr/bin
+install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT%{_bindir}
 
-ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
-ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bzcat
+ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bunzip2
+ln -sf bzip2 $RPM_BUILD_ROOT%{_bindir}/bzcat
 
 install bzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install bzlib.h $RPM_BUILD_ROOT/usr/include
@@ -77,9 +77,9 @@ echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bunzip2.1
 echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzcat.1
 echo .so bzip2.1 > $RPM_BUILD_ROOT%{_mandir}/man1/bzip2recover.1
 
-cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
+cat > $RPM_BUILD_ROOT%{_bindir}/bzless <<EOF
 #!/bin/sh
-/usr/bin/bunzip2 -c "\$@" | /usr/bin/less
+%{_bindir}/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
 install lib*so.*.* lib*.a $RPM_BUILD_ROOT%{_libdir}
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %attr(644,root,root) %{_mandir}/man1/*
 
 %files devel
