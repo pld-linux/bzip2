@@ -115,7 +115,7 @@ Provides:	libbz2.so.1.0()(64bit)
 Provides:	libbz2.so.1.0
 %endif
 Obsoletes:	libbzip2
-Conflicts:	%{name} <= 0:1.0.2-12
+Conflicts:	%{name} < 0:1.0.2-12
 
 %description libs
 libbz2 library.
