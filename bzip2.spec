@@ -8,7 +8,7 @@ License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
-Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/bzip2-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
 Patch0:		bzip2-shlib.patch
 URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
