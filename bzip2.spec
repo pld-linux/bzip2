@@ -48,7 +48,7 @@ Requires:	%{name} = %{version}
 %description devel
 Libbz2 library header files.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe do libbz2.
 
 %package static
@@ -60,7 +60,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static libbz2 library.
 
-%description -l pl static
+%description static -l pl
 Biblioteka statyczna libbz2.
 
 %prep
