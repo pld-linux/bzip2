@@ -117,6 +117,8 @@ Summary(uk):	Статичн╕ б╕бл╕отеки bzip2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
+%define		specflags_ia32	"-fomit-frame-pointer"
+
 %description static
 Static libbz2 library.
 
