@@ -78,5 +78,5 @@ rm -rf $RPM_BUILD_ROOT
 - added using %%{name} and %%{version} in Source,
 - bunzip2(1) man page is now maked as nroff include to bzip(1) instead
   making sym link to bzip2.1 (this allow compress man pages in future),
-- added %attr and %defattr macros in %files (allow build package from
+- added %attr and %defattr macros in %files (allows build package from
   non-root account).
