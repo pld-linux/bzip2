@@ -1596,7 +1596,7 @@ diff -Nru bzip2-1.0.1/bzless bzip2-1.0.1.new/bzless
 +++ bzip2-1.0.1.new/bzless	Sat Jun 24 20:16:09 2000
 @@ -0,0 +1,2 @@
 +#!/bin/sh
-+%{_bindir}/bunzip2 -c "\$@" | /usr/bin/less
++%{_bindir}/bunzip2 -c "$@" | %{_bindir}/less
 diff -Nru bzip2-1.0.1/config.h.in bzip2-1.0.1.new/config.h.in
 --- bzip2-1.0.1/config.h.in	Thu Jan  1 01:00:00 1970
 +++ bzip2-1.0.1.new/config.h.in	Sat Jun 24 20:13:06 2000
