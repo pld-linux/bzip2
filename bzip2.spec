@@ -2,15 +2,15 @@ Summary:	Extremely powerful file compression utility
 Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
-Version:	0.9.5d
-Release:	4
+Version:	1.0.0
+Release:	1
 License:	GPL
 Group:		Utilities/Archiving
 Group(fr):	Applications/Archivage
 Group(pl):	Narzêdzia/Archiwizacja
-Source0:	http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
+Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/bzip2-%{version}.tar.gz
 Patch0:		bzip2-shlib.patch
-URL:		http://www.muraroa.demon.co.uk/
+URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -97,7 +97,7 @@ ln -sf libbz2.so.0.9.5 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README CHANGES Y2K_INFO $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -107,12 +107,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc CHANGES.gz README.gz Y2K_INFO.gz
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
+%doc manual*html 
 %doc *.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*.h
