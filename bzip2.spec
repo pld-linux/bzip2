@@ -3,7 +3,7 @@ Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
@@ -12,6 +12,7 @@ Patch0:		%{name}-libtoolizeautoconf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+Obsoletes:	libbzip2
 URL:		http://sourceware.cygnus.com/bzip2/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
