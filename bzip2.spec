@@ -6,8 +6,9 @@ Release:	2
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
-URL:		http://www.digistar.com/bzip2
-Source:		%{name}-%{version}.tar.gz
+Source:		http://www.digistar.com/bzip2/%{name}-%{version}.tar.gz
+Patch:		bzip2-shlib.patch
+URL:		http://www.digistar.com/bzip2/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -27,24 +28,50 @@ lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78.
 Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s± 
 identyczne.
 
+%package devel
+Summary:	Libbz2 library header files
+Summary(pl):	Pliki nag³ówkowe do libbz2
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
+
+%description devel
+Libbz2 library header files
+
+%description -l pl devel
+Pliki nag³ówkowe do libbz2.
+
+%package static
+Summary:	Static libbz2 library
+Summary(pl):	Biblioteka statyczna libbz2
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
+
+%description static
+Static libbz2 library.
+
+%description -l pl static
+Biblioteka statyczna libbz2.
+
 %prep
 %setup -q 
+%patch -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
+install -d $RPM_BUILD_ROOT/usr/{bin,lib,include,man/man1}
 
 install -s {bzip2,bzip2recover} $RPM_BUILD_ROOT/usr/bin
-install *.a $RPM_BUILD_ROOT/usr/lib
 
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
 ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bzcat
 
 install bzip2.1 $RPM_BUILD_ROOT/usr/man/man1
+install bzlib.h $RPM_BUILD_ROOT/usr/include
 
 echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bunzip2.1
 echo .so bzip2.1 > $RPM_BUILD_ROOT/usr/man/man1/bzcat.1
@@ -55,29 +82,46 @@ cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
 EOF
 
-bzip2 -9  README
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man1/*
+install lib* $RPM_BUILD_ROOT/usr/lib
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-%files
-%defattr(644,root,root,755)
-%doc README.bz2 *.html
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
 
-%attr(755,root,root) /usr/bin/*
-%attr(644,root, man) /usr/man/man1/*
-
-/usr/lib/*.a
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%files
+%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) /usr/bin/*
+%attr(644,root,root) /usr/man/man1/*
+
+%files devel
+%defattr(644,root,root,755)
+%doc *.html
+%attr(755,root,root) /usr/lib/lib*.so
+/usr/include/*.h
+
+%files static
+%attr(644,root,root) /usr/lib/lib*.a
+
 %changelog
+* Sun Mar 14 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.9.0c-2]
+- added build a shared libbz2.so,
+- added devel and static subpackage,
+- gzipping man pages instead bzipping2,
+- removed man group from man pages.
+
 * Fri Jan 15 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.9.0c-1d]
 - added Group(pl),
 - added static bzip2 library,
 - added symlink bzcat,
 - fixed man pages,
-- compressed %doc with bzip2 (bzip2 must be instaled in system ;) 
+- compressed man pages with bzip2 (bzip2 must by instaled in system ;)
 
 * Mon Oct 05 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.9.0-1d]
@@ -93,4 +137,4 @@ rm -rf $RPM_BUILD_ROOT
 
 * Mon Jul 20 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.1pl2-2]
-- build against GNU libc-2.1.
+- build against glibc-2.1.
