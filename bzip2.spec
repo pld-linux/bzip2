@@ -1,3 +1,7 @@
+# 
+# Conditional build:
+# --without tetex - build without html documentation(don't request tetex)
+#
 Summary:	Extremely powerful file compression utility
 Summary(fr):	Utilitaire de compression de fichier extrêmement puissant
 Summary(pl):	Kompresor plików bzip2
@@ -11,7 +15,7 @@ Group(fr):	Applications/Archivage
 Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v100/%{name}-%{version}.tar.gz
 Patch0:		%{name}-libtoolizeautoconf.patch
-BuildRequires:	tetex
+%{!?_without_tetex:BuildRequires:        tetex}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -96,7 +100,7 @@ sed -e "s@%%{_bindir}@%{_bindir}@g" \
 	$RPM_BUILD_ROOT%{_bindir}/bzless
 rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
-( cd doc ; texi2html bzip2.texi )
+%{!?_without_tetex: ( cd doc ; texi2html bzip2.texi )}
 
 gzip -9nf README* NEWS Y2K_INFO
 
@@ -116,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/*.html
+%{!?_without_tetex: %doc doc/*.html}
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*.h
 
