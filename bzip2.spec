@@ -2,7 +2,7 @@ Summary:     Extremely powerful file compression utility
 Summary(pl): Extremalnie wydajny program do kompresowania plików
 Name:        bzip2
 Version:     0.9.0b
-Release:     3
+Release:     4
 Copyright:   Distributable (see LICENSE)
 Vendor:      Julian Seward <jseward@acm.org>
 Group:       Utilities/Archiving
@@ -21,17 +21,17 @@ The command-line options are deliberately very similar to those of GNU Gzip,
 but they are not identical.
 
 %description -l pl
-Bzip2 kompresuje pliki u¿ywaj±c algorymtu kompresji blokowego-sortowania tekstu
-Burrows-Wheeler'a oraz kodowania Huffmana. Generalnie kompresja jest znacznie
-lepsza ni¿ w konwencjonalnych kompresorach u¿ywaj±cych algorytmów LZ77/LZ78
-i zbli¿a siê do wydajno¶ci statystycznych kompresorów z rodziny PPM.
+Bzip2 kompresuje pliki u¿ywaj±c algorymtu kompresji blokowego-sortowania tekstu Burrows-Wheeler'a oraz kodowania Huffmana. Generalnie kompresja
+jest znacznie lepsza ni¿ w konwencjonalnych kompresorach u¿ywaj±cych
+algorytmów LZ77/LZ78 i zbli¿a siê do wydajno¶ci statystycznych kompresorów
+z rodziny PPM.
 
 %prep
 %setup -q
 
 %build
 mkdir shared
-make CFLAGS="$RPM_OPT_FLAGS"
+make CFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -44,6 +44,9 @@ ln -sf bzip2 $RPM_BUILD_ROOT/usr/bin/bunzip2
 install bzip2.1 $RPM_BUILD_ROOT/usr/man/man1
 echo ".so bzip2.1" > $RPM_BUILD_ROOT/usr/man/man1/bunzip2.1
 
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
+gzip -9nf README LICENSE
+
 cat > $RPM_BUILD_ROOT/usr/bin/bzless <<EOF
 #!/bin/sh
 /usr/bin/bunzip2 -c "\$@" | /usr/bin/less
@@ -53,11 +56,15 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(644, root, root, 755) %doc README LICENSE
+%attr(644, root, root, 755) %doc README.gz LICENSE.gz
 %attr(755, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
 
 %changelog
+* Thu Feb 10 1999 Micha³ Kuratczyk <kurkens@polbox.com>
+  [0.9.0b-4]
+- added gzipping man pages and documentation
+
 * Sun Nov  1 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.9.0b-3]
 - added %clean section.
