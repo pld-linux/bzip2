@@ -138,7 +138,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %patch -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__libtoolize}
 %{__automake}
 %{__autoconf}
