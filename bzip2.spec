@@ -2,7 +2,7 @@ Summary:	Extremely powerful file compression utility
 Summary(pl):	Kompresor plików bzip2
 Name:		bzip2
 Version:	0.9.0c
-Release:	5
+Release:	4
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -28,7 +28,7 @@ lepsza ni¿ w przypadku stosowania klasycznych kompresorów LZ77/LZ78.
 Opcje linii poleceñ s± bardzo podobne do poleceñ GNU Gzip ale nie s± 
 identyczne.
 
-%package	devel
+%package devel
 Summary:	Libbz2 library header files
 Summary(pl):	Pliki nag³ówkowe do libbz2
 Group:		Development/Libraries
@@ -41,7 +41,7 @@ Libbz2 library header files
 %description -l pl devel
 Pliki nag³ówkowe do libbz2.
 
-%package	static
+%package static
 Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
