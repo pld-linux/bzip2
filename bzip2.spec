@@ -6,9 +6,6 @@ Version:	1.0.2
 Release:	1
 License:	BSD-like
 Group:		Applications/Archiving
-Group(de):	Applikationen/Archivierung
-Group(fr):	Applications/Archivage
-Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://sourceware.cygnus.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-libtoolizeautoconf.patch
@@ -46,13 +43,6 @@ Summary:	Libbz2 library header files
 Summary(fr):	Librairie statique et fichiers d'en-tЙte pour bzip2
 Summary(pl):	Pliki nagЁСwkowe do libbz2
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -65,13 +55,6 @@ Pliki nagЁСwkowe do libbz2.
 Summary:	Static libbz2 library
 Summary(pl):	Biblioteka statyczna libbz2
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
