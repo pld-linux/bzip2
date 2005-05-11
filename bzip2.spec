@@ -20,6 +20,7 @@ URL:		http://sources.redhat.com/bzip2/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	tetex
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -109,7 +110,7 @@ Summary:	libbz2 library
 Summary(fr):	Librairie libbz2
 Summary(pl):	Biblioteka libbz2
 Group:		Development/Libraries
-%ifarch amd64 ia64 ppc64 sparc64
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libbz2.so.1.0()(64bit)
 %else
 Provides:	libbz2.so.1.0
