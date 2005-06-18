@@ -1,3 +1,6 @@
+# Conditional build:
+%bcond_with	progress	# with progressbar patch
+#
 Summary:	Extremely powerful file compression utility
 Summary(es):	Un compresor de archivos con un nuevo algoritmo
 Summary(fr):	Utilitaire de compression de fichier extrЙmement puissant
@@ -7,7 +10,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	16.2
+Release:	16.3
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -162,7 +165,7 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+%{?with_progress:%patch1 -p1}
 
 %build
 %{__aclocal}
