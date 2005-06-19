@@ -10,7 +10,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.2
-Release:	16.3
+Release:	17
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -173,7 +173,8 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %{__automake}
 %{__autoconf}
 %configure \
-    CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
+	--libdir=/%{_lib} \
+	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
 %{__make}
 cd doc
 /usr/bin/texi2html bzip2.texi
@@ -181,6 +182,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_libdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -194,7 +196,12 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
 # standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
 # but ABI has not changed - provide symlink for binary compatibility
-ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so.1.0
+ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_lib}/libbz2.so.1.0
+
+mv $RPM_BUILD_ROOT/%{_lib}/lib*.{a,la,so} $RPM_BUILD_ROOT%{_libdir}/
+ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_libdir}/libbz2.so
+%{__sed} -i "s|libdir='/%{_lib}'|libdir='%{_libdir}'|" \
+        $RPM_BUILD_ROOT%{_libdir}/libbz2.la
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
@@ -224,8 +231,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %{_libdir}/lib*.so.1.0
+%attr(755,root,root) /%{_lib}/lib*.so.*.*.*
+%attr(755,root,root) /%{_lib}/lib*.so.1.0
 
 %files static
 %defattr(644,root,root,755)
