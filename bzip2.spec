@@ -82,6 +82,28 @@ bzip2 компресу╓ файли використовуючи текстовий алгоритм блочного
 розповсюджен╕ компресори на баз╕ LZ77/LZ78 ╕ наближа╓ться до то╖, що
 ╖╖ забезпечу╓ с╕мейство статистичних компресор╕в PPM.
 
+%package libs
+Summary:	libbz2 library
+Summary(fr):	Librairie libbz2
+Summary(pl):	Biblioteka libbz2
+Group:		Development/Libraries
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
+Provides:	libbz2.so.1.0()(64bit)
+%else
+Provides:	libbz2.so.1.0
+%endif
+Obsoletes:	libbzip2
+Conflicts:	bzip2 < 0:1.0.2-12
+
+%description libs
+libbz2 library.
+
+%description libs -l fr
+Librairie libbz2.
+
+%description libs -l pl
+Biblioteka libbz2.
+
 %package devel
 Summary:	libbz2 library header files
 Summary(fr):	Fichiers d'en-tЙte pour bzip2
@@ -110,28 +132,6 @@ desenvolvimento de programas que usam o bzip2.
 %description devel -l uk
 Цей пакет м╕стить б╕бл╕отеку та хедери, необх╕дн╕ для розробки
 програм, як╕ включають п╕дпрограми компрес╕╖/декомпрес╕╖ bz2.
-
-%package libs
-Summary:	libbz2 library
-Summary(fr):	Librairie libbz2
-Summary(pl):	Biblioteka libbz2
-Group:		Development/Libraries
-%ifarch %{x8664} ia64 ppc64 s390x sparc64
-Provides:	libbz2.so.1.0()(64bit)
-%else
-Provides:	libbz2.so.1.0
-%endif
-Obsoletes:	libbzip2
-Conflicts:	bzip2 < 0:1.0.2-12
-
-%description libs
-libbz2 library.
-
-%description libs -l fr
-Librairie libbz2.
-
-%description libs -l pl
-Biblioteka libbz2.
 
 %package static
 Summary:	Static libbz2 library
@@ -174,7 +174,6 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %{__automake}
 %{__autoconf}
 %configure \
-	--libdir=/%{_lib} \
 	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
 %{__make}
 cd doc
@@ -183,7 +182,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}
+install -d $RPM_BUILD_ROOT/%{_lib}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -195,22 +194,20 @@ sed -e "s@%%{_bindir}@%{_bindir}@g" \
 	$RPM_BUILD_ROOT%{_bindir}/bzless
 rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
 
+mv -f $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
+ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_libdir}/libbz2.so
+
 # standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
 # but ABI has not changed - provide symlink for binary compatibility
 ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_lib}/libbz2.so.1.0
-
-mv $RPM_BUILD_ROOT/%{_lib}/lib*.{a,la,so} $RPM_BUILD_ROOT%{_libdir}/
-ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_libdir}/libbz2.so
-%{__sed} -i "s|libdir='/%{_lib}'|libdir='%{_libdir}'|" \
-        $RPM_BUILD_ROOT%{_libdir}/libbz2.la
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs	-p /sbin/ldconfig
-%postun libs	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -224,16 +221,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) /%{_lib}/lib*.so.*.*.*
+%attr(755,root,root) /%{_lib}/lib*.so.1.0
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/*.h
-
-%files libs
-%defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/lib*.so.*.*.*
-%attr(755,root,root) /%{_lib}/lib*.so.1.0
 
 %files static
 %defattr(644,root,root,755)
