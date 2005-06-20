@@ -1,3 +1,6 @@
+# TODO:
+# - up to 1.0.3
+# 
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
 #
@@ -21,7 +24,7 @@ Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 Patch0:		%{name}-libtoolizeautoconf.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch1:		bzip2-progress-counter-1.0.2.patch
-URL:		http://sources.redhat.com/bzip2/
+URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
