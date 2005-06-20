@@ -1,5 +1,3 @@
-# TODO:
-# - up to 1.0.3
 # 
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
@@ -12,18 +10,18 @@ Summary(pt_BR):	Compactador de arquivo extremamente poderoso
 Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
-Version:	1.0.2
-Release:	17
+Version:	1.0.3
+Release:	1
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
-Source0:	ftp://sources.redhat.com/pub/bzip2/v102/%{name}-%{version}.tar.gz
-# Source0-md5:	ee76864958d568677f03db8afad92beb
+Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	8a716bebecb6e647d2e8a29ea5d8447f
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
-Patch1:		bzip2-progress-counter-1.0.2.patch
+Patch1:		%{name}-progress-counter-1.0.2.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
