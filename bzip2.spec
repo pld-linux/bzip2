@@ -11,7 +11,7 @@ Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.3
-Release:	2
+Release:	3
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -20,8 +20,9 @@ Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
+Patch1:		%{name}-toctou.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
-Patch1:		%{name}-progress-counter-1.0.2.patch
+Patch2:		%{name}-progress-counter-1.0.2.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -166,7 +167,8 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_progress:%patch1 -p1}
+%patch1 -p1
+%{?with_progress:%patch2 -p1}
 
 %build
 %{__aclocal}
