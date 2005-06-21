@@ -32,6 +32,8 @@ BuildRequires:	tetex
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		specflags_ia32	-fomit-frame-pointer
+
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
 compression algorithm, and Huffman coding. Compression is generally
@@ -143,8 +145,6 @@ Summary(ru):	Статические библиотеки bzip2
 Summary(uk):	Статичн╕ б╕бл╕отеки bzip2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-
-%define		specflags_ia32	-fomit-frame-pointer
 
 %description static
 Static libbz2 library.
