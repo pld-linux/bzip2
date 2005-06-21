@@ -149,7 +149,7 @@ Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 %description static
 Static libbz2 library.
 
-%description libs -l fr
+%description static -l fr
 Librairie statique d'en-tête pour bzip2.
 
 %description static -l pl
