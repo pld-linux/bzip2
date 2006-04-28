@@ -1,6 +1,7 @@
 # 
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
+%bcond_without	doc		# don't build tex documentation
 #
 Summary:	Extremely powerful file compression utility
 Summary(es):	Un compresor de archivos con un nuevo algoritmo
@@ -28,7 +29,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.213
-BuildRequires:	tetex
+%{?with_doc:BuildRequires:	tetex}
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -178,9 +179,12 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %configure \
 	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
 %{__make}
+
+%if %{with doc}
 cd doc
 /usr/bin/texi2html bzip2.texi
 cd ..
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -213,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README* Y2K_INFO doc/*.html
+%doc CHANGES LICENSE README* Y2K_INFO %{?with_doc:doc/*.html}
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %lang(es) %{_mandir}/es/man1/*
