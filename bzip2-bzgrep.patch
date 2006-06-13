@@ -1,0 +1,15 @@
+--- bzip2-1.0.2/bzgrep.flaw	2005-06-07 13:43:01.000000000 +0200
++++ bzip2-1.0.2/bzgrep	2005-06-07 14:07:50.000000000 +0200
+@@ -63,7 +63,11 @@
+     bzip2 -cdfq "$i" | $grep $opt "$pat"
+     r=$?
+   else
+-    bzip2 -cdfq "$i" | $grep $opt "$pat" | sed "s|^|${i}:|"
++    j=${i//\\\\/\\\\}
++    j=${j//|/\\|}
++    j=${j//&/\\&}
++    j=`printf "%s" "$j" | tr '\n' ' '`
++    bzip2 -cdfq "$i" | $grep $opt "$pat" | sed "s|^|${j}:|"
+     r=$?
+   fi
+   test "$r" -ne 0 && res="$r"
