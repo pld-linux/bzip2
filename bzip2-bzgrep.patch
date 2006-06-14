@@ -1,5 +1,11 @@
 --- bzip2-1.0.2/bzgrep.flaw	2005-06-07 13:43:01.000000000 +0200
 +++ bzip2-1.0.2/bzgrep	2005-06-07 14:07:50.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ 
+ # Bzgrep wrapped for bzip2, 
+ # adapted from zgrep by Philippe Troin <phil@fifi.org> for Debian GNU/Linux.
 @@ -63,7 +63,11 @@
      bzip2 -cdfq "$i" | $grep $opt "$pat"
      r=$?
