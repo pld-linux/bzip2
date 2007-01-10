@@ -11,21 +11,19 @@ Summary(pt_BR):	Compactador de arquivo extremamente poderoso
 Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
 Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
-Version:	1.0.3
-Release:	6
+Version:	1.0.4
+Release:	1
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8a716bebecb6e647d2e8a29ea5d8447f
+# Source0-md5:	fc310b254f6ba5fbb5da018f04533688
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
-Patch1:		%{name}-toctou.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
-Patch2:		%{name}-progress-counter-1.0.2.patch
-Patch3:		%{name}-bzgrep.patch
-Patch4:		%{name}-tempfile.patch
+Patch1:		%{name}-progress-counter-1.0.2.patch
+Patch2:		%{name}-bzgrep.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -172,8 +170,6 @@ Bibliotecas estАticas para desenvolvimento com a bzip2.
 %patch0 -p1
 %patch1 -p1
 %{?with_progress:%patch2 -p1}
-%patch3 -p1
-%patch4 -p1
 
 %build
 %{__aclocal}
@@ -221,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README* Y2K_INFO %{?with_doc:doc/*.html}
+%doc CHANGES LICENSE README* %{?with_doc:doc/*.html}
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %lang(es) %{_mandir}/es/man1/*
