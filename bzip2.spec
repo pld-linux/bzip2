@@ -23,7 +23,6 @@ Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 Patch0:		%{name}-libtoolizeautoconf.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch1:		%{name}-progress-counter-1.0.2.patch
-Patch2:		%{name}-bzgrep.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -168,8 +167,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%{?with_progress:%patch2 -p1}
+%{?with_progress:%patch1 -p1}
 
 %build
 %{__aclocal}
