@@ -21,8 +21,9 @@ Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
+Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
-Patch1:		%{name}-progress-counter-1.0.2.patch
+Patch2:		%{name}-progress-counter-1.0.2.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -167,7 +168,8 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_progress:%patch1 -p1}
+%patch1 -p1
+%{?with_progress:%patch2 -p1}
 
 %build
 %{__aclocal}
