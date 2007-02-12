@@ -4,12 +4,12 @@
 %bcond_without	doc		# don't build tex documentation
 #
 Summary:	Extremely powerful file compression utility
-Summary(es.UTF-8):   Un compresor de archivos con un nuevo algoritmo
-Summary(fr.UTF-8):   Utilitaire de compression de fichier extrêmement puissant
-Summary(pl.UTF-8):   Kompresor plików bzip2
-Summary(pt_BR.UTF-8):   Compactador de arquivo extremamente poderoso
-Summary(uk.UTF-8):   Компресор файлів на базі алгоритму блочного сортування
-Summary(ru.UTF-8):   Компрессор файлов на основе алгоритма блочной сортировки
+Summary(es.UTF-8):	Un compresor de archivos con un nuevo algoritmo
+Summary(fr.UTF-8):	Utilitaire de compression de fichier extrêmement puissant
+Summary(pl.UTF-8):	Kompresor plików bzip2
+Summary(pt_BR.UTF-8):	Compactador de arquivo extremamente poderoso
+Summary(uk.UTF-8):	Компресор файлів на базі алгоритму блочного сортування
+Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.4
 Release:	1
@@ -88,8 +88,8 @@ bzip2 компресує файли використовуючи текстов�
 
 %package libs
 Summary:	libbz2 library
-Summary(fr.UTF-8):   Librairie libbz2
-Summary(pl.UTF-8):   Biblioteka libbz2
+Summary(fr.UTF-8):	Librairie libbz2
+Summary(pl.UTF-8):	Biblioteka libbz2
 Group:		Libraries
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libbz2.so.1.0()(64bit)
@@ -110,11 +110,11 @@ Biblioteka libbz2.
 
 %package devel
 Summary:	libbz2 library header files
-Summary(fr.UTF-8):   Fichiers d'en-tête pour bzip2
-Summary(pl.UTF-8):   Pliki nagłówkowe do libbz2
-Summary(pt_BR.UTF-8):   Arquivos de inclusão para o bzip2
-Summary(uk.UTF-8):   Хедери, необхідні для програмування з libbz2
-Summary(ru.UTF-8):   Хедеры, необходимые для программирования с libbz2
+Summary(fr.UTF-8):	Fichiers d'en-tête pour bzip2
+Summary(pl.UTF-8):	Pliki nagłówkowe do libbz2
+Summary(pt_BR.UTF-8):	Arquivos de inclusão para o bzip2
+Summary(uk.UTF-8):	Хедери, необхідні для програмування з libbz2
+Summary(ru.UTF-8):	Хедеры, необходимые для программирования с libbz2
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Obsoletes:	libbzip2-devel
@@ -139,11 +139,11 @@ desenvolvimento de programas que usam o bzip2.
 
 %package static
 Summary:	Static libbz2 library
-Summary(fr.UTF-8):   Librairie statique libbz2
-Summary(pl.UTF-8):   Biblioteka statyczna libbz2
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com a bzip2
-Summary(ru.UTF-8):   Статические библиотеки bzip2
-Summary(uk.UTF-8):   Статичні бібліотеки bzip2
+Summary(fr.UTF-8):	Librairie statique libbz2
+Summary(pl.UTF-8):	Biblioteka statyczna libbz2
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com a bzip2
+Summary(ru.UTF-8):	Статические библиотеки bzip2
+Summary(uk.UTF-8):	Статичні бібліотеки bzip2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
