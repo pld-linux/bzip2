@@ -4,12 +4,12 @@
 %bcond_without	doc		# don't build tex documentation
 #
 Summary:	Extremely powerful file compression utility
-Summary(es):	Un compresor de archivos con un nuevo algoritmo
-Summary(fr):	Utilitaire de compression de fichier extrЙmement puissant
-Summary(pl):	Kompresor plikСw bzip2
-Summary(pt_BR):	Compactador de arquivo extremamente poderoso
-Summary(uk):	Компресор файл╕в на баз╕ алгоритму блочного сортування
-Summary(ru):	Компрессор файлов на основе алгоритма блочной сортировки
+Summary(es.UTF-8):   Un compresor de archivos con un nuevo algoritmo
+Summary(fr.UTF-8):   Utilitaire de compression de fichier extrц╙mement puissant
+Summary(pl.UTF-8):   Kompresor plikцЁw bzip2
+Summary(pt_BR.UTF-8):   Compactador de arquivo extremamente poderoso
+Summary(uk.UTF-8):   п п╬п╪п©я─п╣я│п╬я─ я└п╟п╧п╩я√п╡ п╫п╟ п╠п╟п╥я√ п╟п╩пЁп╬я─п╦я┌п╪я┐ п╠п╩п╬я┤п╫п╬пЁп╬ я│п╬я─я┌я┐п╡п╟п╫п╫я▐
+Summary(ru.UTF-8):   п п╬п╪п©я─п╣я│я│п╬я─ я└п╟п╧п╩п╬п╡ п╫п╟ п╬я│п╫п╬п╡п╣ п╟п╩пЁп╬я─п╦я┌п╪п╟ п╠п╩п╬я┤п╫п╬п╧ я│п╬я─я┌п╦я─п╬п╡п╨п╦
 Name:		bzip2
 Version:	1.0.4
 Release:	1
@@ -44,52 +44,52 @@ family of statistical compressors. The command-line options are
 deliberately very similar to those of GNU Gzip, but they are not
 identical.
 
-%description -l es
-Bzip2 es un programa de compresiСn/descompresiСn. TМpicamente el
+%description -l es.UTF-8
+Bzip2 es un programa de compresiцЁn/descompresiцЁn. Tц╜picamente el
 archivo compactado queda entre 20 la 30 por ciento menor de que se
 fuera compactado con gzip. Observa que bzip2 no entiende los archivos
 del bzip original, ni los archivos del gzip.
 
-%description -l fr
+%description -l fr.UTF-8
 Bzip2 compresse des fichiers en utilisant l'algorithme de compression
 en tri de blocks de texte Burrows-Wheeler, et le codage Huffman. La
-compression est considИrablement meilleure que celle effectuИe par les
-plus conventionels compresseurs basИs sur LZ77/LZ78, et approche la
+compression est considц╘rablement meilleure que celle effectuц╘e par les
+plus conventionels compresseurs basц╘s sur LZ77/LZ78, et approche la
 performance de la famille PPM de compresseurs statistiques.
 
-%description -l pl
-Kompresor bzip2 u©ywa algorytmu Burrows-Wheelera do kompresji danych i
+%description -l pl.UTF-8
+Kompresor bzip2 uе╪ywa algorytmu Burrows-Wheelera do kompresji danych i
 metody Huffmana do ich kodowania. Kompresja pliku czy archiwum tar
-jest z reguЁy lepsza ni© w przypadku stosowania klasycznych
-kompresorСw LZ77/LZ78. Opcje linii poleceЯ s╠ bardzo podobne do
-poleceЯ GNU Gzip ale nie s╠ identyczne.
+jest z reguе┌y lepsza niе╪ w przypadku stosowania klasycznych
+kompresorцЁw LZ77/LZ78. Opcje linii poleceе└ sд┘ bardzo podobne do
+poleceе└ GNU Gzip ale nie sд┘ identyczne.
 
-%description -l pt_BR
-Bzip2 И um programa de compressЦo/descompressЦo. Tipicamente o arquivo
+%description -l pt_BR.UTF-8
+Bzip2 ц╘ um programa de compressцёo/descompressцёo. Tipicamente o arquivo
 compactado fica 20 a 30 por cento menor do que se fosse compactado com
 o gzip.
 
-Note que o bzip2 nЦo entende os arquivos do bzip original, nem os
+Note que o bzip2 nцёo entende os arquivos do bzip original, nem os
 arquivos do gzip.
 
-%description -l ru
-bzip2 компрессирует файлы используя компрессирующий текстовый алгоритм
-блочной сортировки Burrows-Wheeler и кодирование Huffman'а.
-Достигаемая компрессия обычно существенно лучше достигаемой более
-привычными компрессорами на основе LZ77/LZ78 и приближается к той,
-которую обеспечивает семейство статистических компрессоров PPM.
+%description -l ru.UTF-8
+bzip2 п╨п╬п╪п©я─п╣я│я│п╦я─я┐п╣я┌ я└п╟п╧п╩я▀ п╦я│п©п╬п╩я▄п╥я┐я▐ п╨п╬п╪п©я─п╣я│я│п╦я─я┐я▌я┴п╦п╧ я┌п╣п╨я│я┌п╬п╡я▀п╧ п╟п╩пЁп╬я─п╦я┌п╪
+п╠п╩п╬я┤п╫п╬п╧ я│п╬я─я┌п╦я─п╬п╡п╨п╦ Burrows-Wheeler п╦ п╨п╬п╢п╦я─п╬п╡п╟п╫п╦п╣ Huffman'п╟.
+п■п╬я│я┌п╦пЁп╟п╣п╪п╟я▐ п╨п╬п╪п©я─п╣я│я│п╦я▐ п╬п╠я▀я┤п╫п╬ я│я┐я┴п╣я│я┌п╡п╣п╫п╫п╬ п╩я┐я┤я┬п╣ п╢п╬я│я┌п╦пЁп╟п╣п╪п╬п╧ п╠п╬п╩п╣п╣
+п©я─п╦п╡я▀я┤п╫я▀п╪п╦ п╨п╬п╪п©я─п╣я│я│п╬я─п╟п╪п╦ п╫п╟ п╬я│п╫п╬п╡п╣ LZ77/LZ78 п╦ п©я─п╦п╠п╩п╦п╤п╟п╣я┌я│я▐ п╨ я┌п╬п╧,
+п╨п╬я┌п╬я─я┐я▌ п╬п╠п╣я│п©п╣я┤п╦п╡п╟п╣я┌ я│п╣п╪п╣п╧я│я┌п╡п╬ я│я┌п╟я┌п╦я│я┌п╦я┤п╣я│п╨п╦я┘ п╨п╬п╪п©я─п╣я│я│п╬я─п╬п╡ PPM.
 
-%description -l uk
-bzip2 компресу╓ файли використовуючи текстовий алгоритм блочного
-сортування Burrows-Wheeler та кодування Huffman'а. Компрес╕я, яка
-досяга╓ться bzip2, як правило краща за ту, що забезпечують
-розповсюджен╕ компресори на баз╕ LZ77/LZ78 ╕ наближа╓ться до то╖, що
-╖╖ забезпечу╓ с╕мейство статистичних компресор╕в PPM.
+%description -l uk.UTF-8
+bzip2 п╨п╬п╪п©я─п╣я│я┐я■ я└п╟п╧п╩п╦ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┤п╦ я┌п╣п╨я│я┌п╬п╡п╦п╧ п╟п╩пЁп╬я─п╦я┌п╪ п╠п╩п╬я┤п╫п╬пЁп╬
+я│п╬я─я┌я┐п╡п╟п╫п╫я▐ Burrows-Wheeler я┌п╟ п╨п╬п╢я┐п╡п╟п╫п╫я▐ Huffman'п╟. п п╬п╪п©я─п╣я│я√я▐, я▐п╨п╟
+п╢п╬я│я▐пЁп╟я■я┌я▄я│я▐ bzip2, я▐п╨ п©я─п╟п╡п╦п╩п╬ п╨я─п╟я┴п╟ п╥п╟ я┌я┐, я┴п╬ п╥п╟п╠п╣п╥п©п╣я┤я┐я▌я┌я▄
+я─п╬п╥п©п╬п╡я│я▌п╢п╤п╣п╫я√ п╨п╬п╪п©я─п╣я│п╬я─п╦ п╫п╟ п╠п╟п╥я√ LZ77/LZ78 я√ п╫п╟п╠п╩п╦п╤п╟я■я┌я▄я│я▐ п╢п╬ я┌п╬я≈, я┴п╬
+я≈я≈ п╥п╟п╠п╣п╥п©п╣я┤я┐я■ я│я√п╪п╣п╧я│я┌п╡п╬ я│я┌п╟я┌п╦я│я┌п╦я┤п╫п╦я┘ п╨п╬п╪п©я─п╣я│п╬я─я√п╡ PPM.
 
 %package libs
 Summary:	libbz2 library
-Summary(fr):	Librairie libbz2
-Summary(pl):	Biblioteka libbz2
+Summary(fr.UTF-8):   Librairie libbz2
+Summary(pl.UTF-8):   Biblioteka libbz2
 Group:		Libraries
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libbz2.so.1.0()(64bit)
@@ -102,19 +102,19 @@ Conflicts:	bzip2 < 0:1.0.2-12
 %description libs
 libbz2 library.
 
-%description libs -l fr
+%description libs -l fr.UTF-8
 Librairie libbz2.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteka libbz2.
 
 %package devel
 Summary:	libbz2 library header files
-Summary(fr):	Fichiers d'en-tЙte pour bzip2
-Summary(pl):	Pliki nagЁСwkowe do libbz2
-Summary(pt_BR):	Arquivos de inclusЦo para o bzip2
-Summary(uk):	Хедери, необх╕дн╕ для програмування з libbz2
-Summary(ru):	Хедеры, необходимые для программирования с libbz2
+Summary(fr.UTF-8):   Fichiers d'en-tц╙te pour bzip2
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe do libbz2
+Summary(pt_BR.UTF-8):   Arquivos de inclusцёo para o bzip2
+Summary(uk.UTF-8):   п╔п╣п╢п╣я─п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ п©я─п╬пЁя─п╟п╪я┐п╡п╟п╫п╫я▐ п╥ libbz2
+Summary(ru.UTF-8):   п╔п╣п╢п╣я─я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ п©я─п╬пЁя─п╟п╪п╪п╦я─п╬п╡п╟п╫п╦я▐ я│ libbz2
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Obsoletes:	libbzip2-devel
@@ -122,48 +122,48 @@ Obsoletes:	libbzip2-devel
 %description devel
 Libbz2 library header files.
 
-%description devel -l pl
-Pliki nagЁСwkowe do libbz2.
+%description devel -l pl.UTF-8
+Pliki nagе┌цЁwkowe do libbz2.
 
-%description devel -l pt_BR
-Este pacote inclui arquivos de inclusЦo necessАrio para o
+%description devel -l pt_BR.UTF-8
+Este pacote inclui arquivos de inclusцёo necessц║rio para o
 desenvolvimento de programas que usam o bzip2.
 
-%description devel -l ru
-Этот пакет содержит библиотеку и хедеры, необходимые для разработки
-программ, включающих подпрограммы компрессии/декомпрессии bz2.
+%description devel -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ п╠п╦п╠п╩п╦п╬я┌п╣п╨я┐ п╦ я┘п╣п╢п╣я─я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦
+п©я─п╬пЁя─п╟п╪п╪, п╡п╨п╩я▌я┤п╟я▌я┴п╦я┘ п©п╬п╢п©я─п╬пЁя─п╟п╪п╪я▀ п╨п╬п╪п©я─п╣я│я│п╦п╦/п╢п╣п╨п╬п╪п©я─п╣я│я│п╦п╦ bz2.
 
-%description devel -l uk
-Цей пакет м╕стить б╕бл╕отеку та хедери, необх╕дн╕ для розробки
-програм, як╕ включають п╕дпрограми компрес╕╖/декомпрес╕╖ bz2.
+%description devel -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ п╠я√п╠п╩я√п╬я┌п╣п╨я┐ я┌п╟ я┘п╣п╢п╣я─п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦
+п©я─п╬пЁя─п╟п╪, я▐п╨я√ п╡п╨п╩я▌я┤п╟я▌я┌я▄ п©я√п╢п©я─п╬пЁя─п╟п╪п╦ п╨п╬п╪п©я─п╣я│я√я≈/п╢п╣п╨п╬п╪п©я─п╣я│я√я≈ bz2.
 
 %package static
 Summary:	Static libbz2 library
-Summary(fr):	Librairie statique libbz2
-Summary(pl):	Biblioteka statyczna libbz2
-Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com a bzip2
-Summary(ru):	Статические библиотеки bzip2
-Summary(uk):	Статичн╕ б╕бл╕отеки bzip2
+Summary(fr.UTF-8):   Librairie statique libbz2
+Summary(pl.UTF-8):   Biblioteka statyczna libbz2
+Summary(pt_BR.UTF-8):   Bibliotecas estц║ticas para desenvolvimento com a bzip2
+Summary(ru.UTF-8):   п║я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ bzip2
+Summary(uk.UTF-8):   п║я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ bzip2
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static libbz2 library.
 
-%description static -l fr
-Librairie statique d'en-tЙte pour bzip2.
+%description static -l fr.UTF-8
+Librairie statique d'en-tц╙te pour bzip2.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteka statyczna libbz2.
 
-%description static -l pt_BR
-Bibliotecas estАticas para desenvolvimento com a bzip2.
+%description static -l pt_BR.UTF-8
+Bibliotecas estц║ticas para desenvolvimento com a bzip2.
 
-%description static -l uk
-Це окремий пакет з╕ статичними б╕бл╕отеками.
+%description static -l uk.UTF-8
+п╕п╣ п╬п╨я─п╣п╪п╦п╧ п©п╟п╨п╣я┌ п╥я√ я│я┌п╟я┌п╦я┤п╫п╦п╪п╦ п╠я√п╠п╩я√п╬я┌п╣п╨п╟п╪п╦.
 
-%description static -l ru
-Это отдельный пакет со статическими библиотеками.
+%description static -l ru.UTF-8
+п╜я┌п╬ п╬я┌п╢п╣п╩я▄п╫я▀п╧ п©п╟п╨п╣я┌ я│п╬ я│я┌п╟я┌п╦я┤п╣я│п╨п╦п╪п╦ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟п╪п╦.
 
 %prep
 %setup -q
