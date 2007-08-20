@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
 %bcond_without	doc		# don't build tex documentation
+%bcond_without	static_libs	# don't build static libraries
 #
 Summary:	Extremely powerful file compression utility
 Summary(es.UTF-8):	Un compresor de archivos con un nuevo algoritmo
@@ -177,7 +178,8 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %{__automake}
 %{__autoconf}
 %configure \
-	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
+	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64" \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %if %{with doc}
@@ -238,6 +240,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/*.h
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
