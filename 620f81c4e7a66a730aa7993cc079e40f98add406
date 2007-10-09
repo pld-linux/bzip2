@@ -1,0 +1,2 @@
+- updated to 1.0.2 (some security fixes if bzip2 is used in trusted environment
+  like ftpd environment and minor updates).
