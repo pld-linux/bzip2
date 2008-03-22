@@ -1,7 +1,6 @@
 # 
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
-%bcond_without	doc		# don't build tex documentation
 %bcond_without	static_libs	# don't build static libraries
 #
 Summary:	Extremely powerful file compression utility
@@ -19,18 +18,17 @@ License:	BSD-like
 Group:		Applications/Archiving
 Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	3c15a0c8d1d3ee1c46a1634d00617b1a
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-# Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
+Source1:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
+# Source1-md5:	14a68bf85666428000aad7cb0785a6e5
 Patch0:		%{name}-libtoolizeautoconf.patch
 Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch2:		%{name}-progress-counter-1.0.2.patch
 URL:		http://www.bzip.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake >= 1:1.6
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.213
-%{?with_doc:BuildRequires:	tetex}
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -173,20 +171,14 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %{?with_progress:%patch2 -p1}
 
 %build
-%{__aclocal}
 %{__libtoolize}
-%{__automake}
+%{__aclocal}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64" \
 	%{!?with_static_libs:--disable-static}
 %{__make}
-
-%if %{with doc}
-cd doc
-/usr/bin/texi2html bzip2.texi
-cd ..
-%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -195,15 +187,8 @@ install -d $RPM_BUILD_ROOT/%{_lib}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# Substitute %{_bindir} in bzless.
-mv -f $RPM_BUILD_ROOT%{_bindir}/bzless{,.tmp}
-sed -e "s@%%{_bindir}@%{_bindir}@g" \
-	$RPM_BUILD_ROOT%{_bindir}/bzless.tmp > \
-	$RPM_BUILD_ROOT%{_bindir}/bzless
-rm -f $RPM_BUILD_ROOT%{_bindir}/bzless.tmp
-
 mv -f $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
-ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_libdir}/libbz2.so
+ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 
 # standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
 # but ABI has not changed - provide symlink for binary compatibility
@@ -219,29 +204,55 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README* %{?with_doc:doc/*.html}
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
+%doc CHANGES LICENSE README manual.html
+%attr(755,root,root) %{_bindir}/bunzip2
+%attr(755,root,root) %{_bindir}/bzcat
+%attr(755,root,root) %{_bindir}/bzcmp
+%attr(755,root,root) %{_bindir}/bzdiff
+%attr(755,root,root) %{_bindir}/bzegrep
+%attr(755,root,root) %{_bindir}/bzfgrep
+%attr(755,root,root) %{_bindir}/bzgrep
+%attr(755,root,root) %{_bindir}/bzip2
+%attr(755,root,root) %{_bindir}/bzip2recover
+%attr(755,root,root) %{_bindir}/bzless
+%attr(755,root,root) %{_bindir}/bzmore
+%{_mandir}/man1/bunzip2.1*
+%{_mandir}/man1/bzcat.1*
+%{_mandir}/man1/bzcmp.1*
+%{_mandir}/man1/bzdiff.1*
+%{_mandir}/man1/bzegrep.1*
+%{_mandir}/man1/bzfgrep.1*
+%{_mandir}/man1/bzgrep.1*
+%{_mandir}/man1/bzless.1*
+%{_mandir}/man1/bzmore.1*
+%{_mandir}/man1/bzip2.1*
+%{_mandir}/man1/bzip2recover.1*
+%lang(cs) %{_mandir}/cs/man1/*
 %lang(es) %{_mandir}/es/man1/*
 %lang(fr) %{_mandir}/fr/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
+%lang(it) %{_mandir}/it/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
+%lang(tr) %{_mandir}/tr/man1/*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/*
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) /%{_lib}/lib*.so.*.*.*
-%attr(755,root,root) /%{_lib}/lib*.so.1.0
+%attr(755,root,root) /%{_lib}/libbz2.so.*.*.*
+%attr(755,root,root) /%{_lib}/libbz2.so.1.0
+%attr(755,root,root) %ghost /%{_lib}/libbz2.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*.h
+%attr(755,root,root) %{_libdir}/libbz2.so
+%{_libdir}/libbz2.la
+%{_includedir}/bzlib.h
+%{_includedir}/bzlib_private.h
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libbz2.a
 %endif
