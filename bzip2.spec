@@ -12,13 +12,13 @@ Summary(pt_BR.UTF-8):	Compactador de arquivo extremamente poderoso
 Summary(uk.UTF-8):	Компресор файлів на базі алгоритму блочного сортування
 Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	fc310b254f6ba5fbb5da018f04533688
+# Source0-md5:	3c15a0c8d1d3ee1c46a1634d00617b1a
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	5ffc3dbdd40080a8c22c3b4c3143cdd7
 Patch0:		%{name}-libtoolizeautoconf.patch
