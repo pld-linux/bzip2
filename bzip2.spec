@@ -12,7 +12,7 @@ Summary(uk.UTF-8):	Компресор файлів на базі алгорит�
 Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.5
-Release:	2
+Release:	3
 Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
@@ -32,7 +32,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags_ia32	-fomit-frame-pointer
+%define		specflags_ia32	-fomit-frame-pointer -D_FILE_OFFSET_BITS=64
 
 %description
 Bzip2 compresses files using the Burrows-Wheeler block-sorting text
