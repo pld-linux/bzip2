@@ -183,7 +183,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_lib}
+install -d $RPM_BUILD_ROOT/{%{_lib},etc/env.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -194,6 +194,10 @@ ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 # standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
 # but ABI has not changed - provide symlink for binary compatibility
 ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_lib}/libbz2.so.1.0
+
+cat << EOF >$RPM_BUILD_ROOT/etc/env.d/BZIP2
+#BZIP2="-5"
+EOF
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
@@ -206,6 +210,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES LICENSE README manual.html
+%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
 %attr(755,root,root) %{_bindir}/bunzip2
 %attr(755,root,root) %{_bindir}/bzcat
 %attr(755,root,root) %{_bindir}/bzcmp
