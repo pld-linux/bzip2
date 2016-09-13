@@ -1,4 +1,4 @@
-# 
+#
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
 %bcond_without	static_libs	# don't build static libraries
@@ -12,13 +12,14 @@ Summary(uk.UTF-8):	Компресор файлів на базі алгорит�
 Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.6
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	00b516f4704d4a7cb50a1d97e6e8e15b
 Source1:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source1-md5:	14a68bf85666428000aad7cb0785a6e5
+Source2:	%{name}.pc
 Patch0:		%{name}-libtoolizeautoconf.patch
 Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
@@ -182,10 +183,15 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_lib},etc/env.d}
+install -d $RPM_BUILD_ROOT{/%{_lib},/etc/env.d,%{_pkgconfigdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__sed} -e '
+	s|^libdir=.*|libdir=%{_libdir}|
+	s|^Version:.*|Version: %{version}|
+' %{SOURCE2} > $RPM_BUILD_ROOT%{_pkgconfigdir}/bzip2.pc
 
 mv -f $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
 ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
@@ -209,7 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES LICENSE README manual.html
-%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
+%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/BZIP2
 %attr(755,root,root) %{_bindir}/bunzip2
 %attr(755,root,root) %{_bindir}/bzcat
 %attr(755,root,root) %{_bindir}/bzcmp
@@ -255,6 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbz2.la
 %{_includedir}/bzlib.h
 %{_includedir}/bzlib_private.h
+%{_pkgconfigdir}/bzip2.pc
 
 %if %{with static_libs}
 %files static
