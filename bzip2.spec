@@ -24,6 +24,7 @@ Patch0:		%{name}-libtoolizeautoconf.patch
 Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch2:		%{name}-progress-counter-1.0.2.patch
+Patch3:		%{name}-1.0.4-bzip2recover.patch
 URL:		http://www.bzip.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.6
@@ -169,6 +170,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %patch0 -p1
 %patch1 -p1
 %{?with_progress:%patch2 -p1}
+%patch3 -p1
 
 %build
 %{__libtoolize}

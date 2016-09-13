@@ -1,0 +1,21 @@
+
+https://bugzilla.redhat.com/226979
+
+commit d92c60c24c16e46363dd15b94b47f04a7535898e
+Author: Ivana Varekova <varekova@fedoraproject.org>
+Date:   Mon Feb 5 11:12:02 2007 +0000
+
+    - Resolves: 226979 Buffer overflow in bzip2's bzip2recover
+
+--- bzip2-1.0.4/bzip2recover.c.pom	2007-01-03 03:00:55.000000000 +0100
++++ bzip2-1.0.4/bzip2recover.c	2007-02-05 11:55:17.000000000 +0100
+@@ -309,7 +309,8 @@
+    UInt32      buffHi, buffLo, blockCRC;
+    Char*       p;
+ 
+-   strcpy ( progName, argv[0] );
++   strncpy ( progName, argv[0], BZ_MAX_FILENAME-1);
++   progName[BZ_MAX_FILENAME-1]='\0';
+    inFileName[0] = outFileName[0] = 0;
+ 
+    fprintf ( stderr, 
