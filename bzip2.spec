@@ -196,6 +196,7 @@ install -d $RPM_BUILD_ROOT{/%{_lib},/etc/env.d,%{_pkgconfigdir}}
 mv -f $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
 ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 
+# TODO: move this to install-*-hook so the patch could be upstreamed eventually
 # standard soname was libbz2.so.1.0, libtoolizeautoconf patch broke it,
 # but ABI has not changed - provide symlink for binary compatibility
 ln -sf libbz2.so.1.0.0 $RPM_BUILD_ROOT/%{_lib}/libbz2.so.1.0
