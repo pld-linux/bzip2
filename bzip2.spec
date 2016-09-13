@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
 %bcond_without	static_libs	# don't build static libraries
-#
+
 Summary:	Extremely powerful file compression utility
 Summary(es.UTF-8):	Un compresor de archivos con un nuevo algoritmo
 Summary(fr.UTF-8):	Utilitaire de compression de fichier extrêmement puissant
@@ -13,7 +13,6 @@ Summary(ru.UTF-8):	Компрессор файлов на основе алго�
 Name:		bzip2
 Version:	1.0.6
 Release:	2
-Epoch:		0
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
@@ -29,7 +28,7 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.213
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia32	-fomit-frame-pointer
@@ -115,7 +114,7 @@ Summary(pt_BR.UTF-8):	Arquivos de inclusão para o bzip2
 Summary(uk.UTF-8):	Хедери, необхідні для програмування з libbz2
 Summary(ru.UTF-8):	Хедеры, необходимые для программирования с libbz2
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	libbzip2-devel
 
 %description devel
@@ -144,7 +143,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com a bzip2
 Summary(ru.UTF-8):	Статические библиотеки bzip2
 Summary(uk.UTF-8):	Статичні бібліотеки bzip2
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libbz2 library.
