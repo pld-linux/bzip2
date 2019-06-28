@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with	progress	# with progressbar patch
-%bcond_without	static_libs	# don't build static libraries
+%bcond_without	static_libs	# static libraries
 
 Summary:	Extremely powerful file compression utility
 Summary(es.UTF-8):	Un compresor de archivos con un nuevo algoritmo
@@ -24,7 +24,7 @@ Patch0:		%{name}-libtoolizeautoconf.patch
 Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch2:		%{name}-progress-counter-1.0.2.patch
-URL:		https://sourceware.org/bzip2//
+URL:		https://sourceware.org/bzip2/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	libtool
@@ -193,7 +193,7 @@ install -d $RPM_BUILD_ROOT{/%{_lib},/etc/env.d,%{_pkgconfigdir}}
 	s|^Version:.*|Version: %{version}|
 ' %{SOURCE2} > $RPM_BUILD_ROOT%{_pkgconfigdir}/bzip2.pc
 
-mv -f $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/libbz2.so.* $RPM_BUILD_ROOT/%{_lib}
 ln -sf /%{_lib}/libbz2.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libbz2.so
 
 # TODO: move this to install-*-hook so the patch could be upstreamed eventually
