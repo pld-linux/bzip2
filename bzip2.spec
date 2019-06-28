@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Compactador de arquivo extremamente poderoso
 Summary(uk.UTF-8):	Компресор файлів на базі алгоритму блочного сортування
 Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
-Version:	1.0.6
-Release:	3
+Version:	1.0.7
+Release:	1
 License:	BSD-like
 Group:		Applications/Archiving
-Source0:	http://www.bzip.org/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	00b516f4704d4a7cb50a1d97e6e8e15b
+Source0:	https://sourceware.org/pub/bzip2/%{name}-%{version}.tar.gz
+# Source0-md5:	1a6a61cc867be4f3d6549037a09bf13e
 Source1:	http://qboosh.pl/man/%{name}-man-pages.tar.bz2
 # Source1-md5:	14a68bf85666428000aad7cb0785a6e5
 Source2:	%{name}.pc
@@ -24,8 +24,7 @@ Patch0:		%{name}-libtoolizeautoconf.patch
 Patch1:		%{name}-bzgrep.patch
 # Modified from http://www.vanheusden.com/Linux/bzip2-1.0.2.diff.gz
 Patch2:		%{name}-progress-counter-1.0.2.patch
-Patch3:		%{name}-1.0.4-bzip2recover.patch
-URL:		http://www.bzip.org/
+URL:		https://sourceware.org/bzip2//
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.6
 BuildRequires:	libtool
@@ -170,7 +169,6 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %patch0 -p1
 %patch1 -p1
 %{?with_progress:%patch2 -p1}
-%patch3 -p1
 
 %build
 %{__libtoolize}
