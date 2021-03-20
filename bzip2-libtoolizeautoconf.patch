@@ -1,17 +1,6 @@
---- bzip2-1.0.5.orig/configure.ac	1970-01-01 01:00:00.000000000 +0100
-+++ bzip2-1.0.5/configure.ac	2008-03-22 16:15:55.057937371 +0100
-@@ -0,0 +1,9 @@
-+AC_INIT([bzip2], [1.0.6])
-+AM_INIT_AUTOMAKE
-+AC_CONFIG_HEADER([config.h])
-+AC_PROG_CC
-+AC_PROG_LIBTOOL
-+AC_PROG_LN_S
-+AC_SYS_LARGEFILE
-+AC_CONFIG_FILES([Makefile])
-+AC_OUTPUT
---- bzip2-1.0.5.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
-+++ bzip2-1.0.5/Makefile.am	2008-03-22 16:14:38.913593962 +0100
+diff -urNp -x '*.orig' bzip2-1.0.8.org/Makefile.am bzip2-1.0.8/Makefile.am
+--- bzip2-1.0.8.org/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.8/Makefile.am	2021-03-21 00:16:33.329899186 +0100
 @@ -0,0 +1,37 @@
 +include_HEADERS	= bzlib.h bzlib_private.h
 +lib_LTLIBRARIES	= libbz2.la
@@ -50,33 +39,49 @@
 +	echo '.so bzgrep.1' >$(DESTDIR)$(mandir)/man1/bzfgrep.1
 +	echo '.so bzmore.1' >$(DESTDIR)$(mandir)/man1/bzless.1
 +	echo '.so bzdiff.1' >$(DESTDIR)$(mandir)/man1/bzcmp.1
---- bzip2-1.0.2/crctable.c	Sun Dec 30 03:19:28 2001
-+++ bzip2-1.0.2.new/crctable.c	Fri Feb  1 04:19:11 2002
-@@ -58,6 +58,9 @@
-   For more information on these sources, see the manual.
- --*/
+diff -urNp -x '*.orig' bzip2-1.0.8.org/configure.ac bzip2-1.0.8/configure.ac
+--- bzip2-1.0.8.org/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.8/configure.ac	2021-03-21 00:16:33.329899186 +0100
+@@ -0,0 +1,9 @@
++AC_INIT([bzip2], [1.0.6])
++AM_INIT_AUTOMAKE
++AC_CONFIG_HEADER([config.h])
++AC_PROG_CC
++AC_PROG_LIBTOOL
++AC_PROG_LN_S
++AC_SYS_LARGEFILE
++AC_CONFIG_FILES([Makefile])
++AC_OUTPUT
+diff -urNp -x '*.orig' bzip2-1.0.8.org/crctable.c bzip2-1.0.8/crctable.c
+--- bzip2-1.0.8.org/crctable.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/crctable.c	2021-03-21 00:16:33.329899186 +0100
+@@ -98,6 +98,9 @@ UInt32 BZ2_crc32Table[256] = {
+    0xbcb4666dL, 0xb8757bdaL, 0xb5365d03L, 0xb1f740b4L
+ };
  
 +#ifdef HAVE_CONFIG_H
 +#include <config.h>
 +#endif
  
- #include "bzlib_private.h"
- 
---- bzip2-1.0.2/decompress.c	Sun Dec 30 21:45:53 2001
-+++ bzip2-1.0.2.new/decompress.c	Fri Feb  1 04:19:11 2002
-@@ -58,6 +58,9 @@
-   For more information on these sources, see the manual.
- --*/
+ /*-------------------------------------------------------------*/
+ /*--- end                                        crctable.c ---*/
+diff -urNp -x '*.orig' bzip2-1.0.8.org/decompress.c bzip2-1.0.8/decompress.c
+--- bzip2-1.0.8.org/decompress.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/decompress.c	2021-03-21 00:16:33.330899186 +0100
+@@ -35,6 +35,9 @@ void makeMaps_d ( DState* s )
+       }
+ }
  
 +#ifdef HAVE_CONFIG_H
 +#include <config.h>
 +#endif
  
- #include "bzlib_private.h"
- 
---- bzip2-1.0.2/dlltest.c	Sun Dec 30 20:44:07 2001
-+++ bzip2-1.0.2.new/dlltest.c	Fri Feb  1 04:19:11 2002
-@@ -8,6 +8,10 @@
+ /*---------------------------------------------------*/
+ #define RETURN(rrr)                               \
+diff -urNp -x '*.orig' bzip2-1.0.8.org/dlltest.c bzip2-1.0.8/dlltest.c
+--- bzip2-1.0.8.org/dlltest.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/dlltest.c	2021-03-21 00:16:33.330899186 +0100
+@@ -7,6 +7,10 @@
     usage: minibz2 [-d] [-{1,2,..9}] [[srcfilename] destfilename]
  */
  
@@ -87,23 +92,25 @@
  #define BZ_IMPORT
  #include <stdio.h>
  #include <stdlib.h>
---- bzip2-1.0.2/randtable.c	Sun Dec 30 03:19:04 2001
-+++ bzip2-1.0.2.new/randtable.c	Fri Feb  1 04:19:18 2002
-@@ -58,6 +58,9 @@
-   For more information on these sources, see the manual.
- --*/
+diff -urNp -x '*.orig' bzip2-1.0.8.org/randtable.c bzip2-1.0.8/randtable.c
+--- bzip2-1.0.8.org/randtable.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/randtable.c	2021-03-21 00:16:33.330899186 +0100
+@@ -78,6 +78,9 @@ Int32 BZ2_rNums[512] = {
+    936, 638
+ };
  
 +#ifdef HAVE_CONFIG_H
 +#include <config.h>
 +#endif
  
- #include "bzlib_private.h"
+ /*-------------------------------------------------------------*/
+ /*--- end                                       randtable.c ---*/
+diff -urNp -x '*.orig' bzip2-1.0.8.org/spewG.c bzip2-1.0.8/spewG.c
+--- bzip2-1.0.8.org/spewG.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/spewG.c	2021-03-21 00:16:33.330899186 +0100
+@@ -24,7 +24,9 @@
+ 	 ------------------------------------------------------------------ */
  
---- bzip2-1.0.2/spewG.c	Thu Apr  6 01:24:45 2000
-+++ bzip2-1.0.2.new/spewG.c	Fri Feb  1 04:19:18 2002
-@@ -9,7 +9,9 @@
-    (but is otherwise harmless).
- */
  
 -#define _FILE_OFFSET_BITS 64
 +#ifdef HAVE_CONFIG_H
@@ -112,12 +119,12 @@
  
  #include <stdio.h>
  #include <stdlib.h>
-diff -Nru bzip2-1.0.2/unzcrash.c bzip2-1.0.2.new/unzcrash.c
---- bzip2-1.0.2/unzcrash.c	Thu Apr  6 01:24:46 2000
-+++ bzip2-1.0.2.new/unzcrash.c	Fri Feb  1 04:19:18 2002
-@@ -13,6 +13,10 @@
-    many hours.
- */
+diff -urNp -x '*.orig' bzip2-1.0.8.org/unzcrash.c bzip2-1.0.8/unzcrash.c
+--- bzip2-1.0.8.org/unzcrash.c	2019-07-13 19:50:05.000000000 +0200
++++ bzip2-1.0.8/unzcrash.c	2021-03-21 00:16:33.330899186 +0100
+@@ -28,6 +28,10 @@
+    ------------------------------------------------------------------ */
+ 
  
 +#ifdef HAVE_CONFIG_H
 +#include <config.h>
