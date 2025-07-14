@@ -166,7 +166,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %{?with_progress:%patch2 -p1}
 
