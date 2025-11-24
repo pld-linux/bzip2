@@ -168,7 +168,7 @@ Bibliotecas estáticas para desenvolvimento com a bzip2.
 %setup -q
 %patch -P0 -p1
 
-%{?with_progress:%patch2 -p1}
+%{?with_progress:%patch -P2 -p1}
 
 %build
 %{__libtoolize}
