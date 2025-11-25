@@ -12,7 +12,7 @@ Summary(uk.UTF-8):	Компресор файлів на базі алгорит�
 Summary(ru.UTF-8):	Компрессор файлов на основе алгоритма блочной сортировки
 Name:		bzip2
 Version:	1.0.8
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Applications/Archiving
 Source0:	https://sourceware.org/pub/bzip2/%{name}-%{version}.tar.gz
